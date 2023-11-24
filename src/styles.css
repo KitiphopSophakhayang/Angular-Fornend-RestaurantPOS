@@ -2,3 +2,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-background {
+    background-image: url('assets/image/imagebackground.png');
+    background-size: cover; /* ให้รูปภาพขยายเต็มพื้นที่ */
+    background-position: center; /* จัดตำแหน่งภาพให้ตรงกลาง */
+    background-repeat: no-repeat; /* ไม่ต้องการการทำซ้ำภาพ */
+  }
+  
+
+  .custom-background-top {
+    background-image: url('assets/image/imageFoodLogo.png');
+    background-size: cover; /* ให้รูปภาพขยายเต็มพื้นที่ */
+    background-position: center; /* จัดตำแหน่งภาพให้ตรงกลาง */
+    background-repeat: no-repeat; /* ไม่ต้องการการทำซ้ำภาพ */
+  }
