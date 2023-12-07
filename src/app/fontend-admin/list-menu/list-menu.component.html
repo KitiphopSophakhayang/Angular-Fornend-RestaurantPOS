@@ -27,17 +27,17 @@
             <div>
                 <div class="sticky top-0">
                     <div>
-                        <div class="bg-[rgba(245,245,245,255)] p-20"></div>
-                        <div>
-                            <div class="m-5 p-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)]">
+                        <div class="bg-[rgba(245,245,245,255)] p-20 "></div>
+                        <div >
+                            <div class="m-5 p-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] ">
                                 <button >
-                                    <div class="flex items-center">
+                                    <div class="flex items-center responsive-text ">
                                         <img src="assets/image/menu_list_2.png">
                                         <p class=" mx-2">รายการอาหาร</p>
                                     </div>
                                 </button>
                             </div>
-                            <div class="m-5 p-5 hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)]">
+                            <div class="m-5 p-5 hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] responsive-text ">
                                 <button >
                                     <div class="flex items-center">
                                         <img src="assets/image/menu_order.png">
@@ -45,7 +45,7 @@
                                     </div>  
                                 </button>
                             </div>
-                            <div class="m-5 p-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)]">
+                            <div class="m-5 p-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] responsive-text ">
                                 <button >
                                     <div class="flex items-center">
                                         <img src="assets/image/menu_edit.png">
@@ -53,7 +53,7 @@
                                     </div>
                                 </button>
                             </div>
-                            <div class="m-5 p-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)]">
+                            <div class="m-5 p-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] responsive-text ">
                                 <button >
                                     <div class="flex items-center">
                                         <img src="assets/image/menu_report.png">
@@ -68,20 +68,20 @@
         </div>
     
         <!-- ฝั่งรายการอาหาร -->
-        <div class="bg-[rgba(245,245,245,255)]">
-            <div class="mx-28 my-10  bg-[rgba(217,217,217,255)] rounded-xl">
+        <div class="bg-[rgba(245,245,245,255)] ">
+            <div class="mx-28 my-10  bg-[rgba(217,217,217,255)] rounded-xl ">
                 <div class="relative flex items-center text-gray-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="absolute inset-y-0 m-auto ml-3 w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
-                    <input type="search" name="search" placeholder="ค้นหา" class="flex bg-[rgba(217,217,217,255)] w-full h-10 mx-2 pl-10 text-base focus:outline-none">
+                    <input type="search" name="search" placeholder="ค้นหา" class="responsive-text  flex bg-[rgba(217,217,217,255)] w-full h-10 mx-2 pl-10 text-base focus:outline-none">
                     <button type="submit" class="absolute right-0 top-0 mt-3 mr-4"></button>
                 </div>
             </div>
-            <div class="pl-4">
-                <p class="text-stone-600 text-lg">หมวดหมู่</p>
+            <div class="pl-4 ">
+                <p class="text-stone-600 responsive-text ">หมวดหมู่</p>
             </div>
-            <div class="grid grid-cols-4 gap-3 mx-3 mt-2">
+            <div class="grid grid-cols-4 gap-3 mx-3 mt-2 ">
                   <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl">
                     <div>
                       <img src="assets/image/rice.png">
@@ -108,8 +108,8 @@
                   </div>
             </div>
 
-            <div class="pl-4 mt-3">
-                <p class="text-stone-600 text-lg">รายการอาหารทั้งหมด</p>
+            <div class="pl-4 mt-3 ">
+                <p class="text-stone-600 responsive-text ">รายการอาหารทั้งหมด</p>
             </div>
 
             <div class="grid grid-cols-3 gap-3 mx-3 mt-2">
@@ -237,37 +237,89 @@
         </div>
 
         <!-- ฝั่งออเดอร์ -->
+
         <div>
+            <div class="grid grid-row-4 bg-white h-screen sticky top-0">
+                <div  class="flex  px-4 pt-8 text-[rgb(129,125,125)] responsive-text "> 
+                    <p >ยังไม่มีรายการออเดอร์</p>
+                </div> 
+                <div class="py-20">
+                    <img src="assets/image/imageOrder.png" class="m-auto sm:w-4/5 md:w-w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
+                    <p class="text-center text-[rgb(129,125,125)] responsive-text ">รอออเดอร์</p>
+                </div>
+                <div class="p-4  sm: md:p-2 lg:pt-44 xl:pt-4  2xl:">
+                    <div class="shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] flex items-center ">
+                        <p class="mr-5 pl-2 text-[rgb(75,75,75)] responsive-text ">ราคารวม</p>
+                        <p class="text-lg font-bold text-yellow-400 responsive-text ">0.00 B</p>
+                    </div>
+                </div>
+                <div class="pb-10 p-4 sm: md:p-2 lg:pb-20 xl:pt-5 2xl:">
+                    <button class=" w-full p-5 hover:bg-yellow-400 bg-[rgba(250,175,21,1)]   rounded-3xl  text-lg text-white ">
+                        <div class="flex items-center">
+                            <p class="responsive-text ">ยืนยันออเดอร์</p>
+                          </div>                      
+                    </button>
+                </div>
+          </div>
+        </div>
+
+      </div>
+    </body>
+
+
+    <!-- สำรองอันเก่า -->
+        <!-- <div>
             <div class=" sticky top-0 bg-white grid h-screen  grid-rows-[1fr_5fr_1fr_1fr]">
                 <div  class="p-4 text-[rgb(129,125,125)]"> 
-                    <p>ยังไม่มีรายการออเดอร์</p>
+                    <p class="sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">ยังไม่มีรายการออเดอร์</p>
                 </div>
                 <div class="py-20">
                     <img src="assets/image/imageOrder.png" class="m-auto sm:w-4/5 md:w-w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
-                    <p class="text-center text-[rgb(129,125,125)] mt-5">รอออเดอร์</p>
+                    <p class="text-center text-[rgb(129,125,125)] mt-5 sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">รอออเดอร์</p>
                 </div>
-                <div class="px-4 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28 2xl:mt-36">
-                    <div class="shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] flex items-center">
-                        <p class="mr-5 pl-2 text-[rgb(75,75,75)]">ราคารวม</p>
-                        <p class="text-lg font-bold text-yellow-400">0.00 B</p>
+                <div class="px-4 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28 2xl:mt-36 ">
+                    <div class="shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] flex items-center ">
+                        <p class="mr-5 pl-2 text-[rgb(75,75,75)] sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">ราคารวม</p>
+                        <p class="text-lg font-bold text-yellow-400 sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">0.00 B</p>
                     </div>
                 </div>
                 
                 <div class="p-4 ">
                     <button class=" sm: md:p-2 lg: xl: 2xl: w-full p-5 hover:bg-yellow-400 bg-[rgba(250,175,21,1)]   rounded-3xl  text-lg text-white ">
                         <div class="flex items-center">
-                            <p class="mx-auto text-center">ยืนยันออเดอร์</p>
+                            <p class="mx-auto text-center sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">ยืนยันออเดอร์</p>
                           </div>                      
                     </button>
                 </div>
                 
             </div>
-        </div>
+        </div> -->
 
 
-        
-      </div>
-    </body>
-
-
-    
+<!-- 
+        <div>
+            <div class=" sticky top-0 bg-white grid h-screen  grid-rows-[1fr_5fr_1fr_1fr]">
+                <div  class="p-4 text-[rgb(129,125,125)]"> 
+                    <p class="sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">ยังไม่มีรายการออเดอร์</p>
+                </div>
+                <div class="py-20">
+                    <img src="assets/image/imageOrder.png" class="m-auto sm:w-4/5 md:w-w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
+                    <p class="text-center text-[rgb(129,125,125)] mt-5 sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">รอออเดอร์</p>
+                </div>
+                <div class="px-4 sm:mt-16 md:mt-20 lg:mt-24 xl:mt-28 2xl:mt-36 ">
+                    <div class="shadow-[rgba(17,_17,_26,_0.2)_0px_0px_16px] flex items-center ">
+                        <p class="mr-5 pl-2 text-[rgb(75,75,75)] sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">ราคารวม</p>
+                        <p class="text-lg font-bold text-yellow-400 sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">0.00 B</p>
+                    </div>
+                </div>
+                
+                <div class="p-4 ">
+                    <button class=" sm: md:p-2 lg: xl: 2xl: w-full p-5 hover:bg-yellow-400 bg-[rgba(250,175,21,1)]   rounded-3xl  text-lg text-white ">
+                        <div class="flex items-center">
+                            <p class="mx-auto text-center sm:text-sm md:text-text-base lg:text-lg xl:text-xl 2xl:text-2xl">ยืนยันออเดอร์</p>
+                          </div>                      
+                    </button>
+                </div>
+                
+            </div>
+        </div> -->
