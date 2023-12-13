@@ -1,4 +1,80 @@
 <!-- <app-page-user-buy></app-page-user-buy> -->
-<app-list-menu></app-list-menu>
-<p>222</p>
-<p>111111</p>
+<!-- <app-list-menu></app-list-menu> -->
+
+<!-- <app-order-menu></app-order-menu> -->
+
+<!-- <app-list-edit></app-list-edit> -->
+
+<!-- <app-report></app-report> -->
+
+<!-- <app-page-user></app-page-user> -->
+
+<!-- <app-page-user-buy></app-page-user-buy> -->
+ 
+
+<!-- หน้าหลัก -->
+<body class="bg-[rgba(245,245,245,255)]">
+    
+    <div class="grid grid-cols-[3fr_12fr] ">
+        <div class="grid bg-[rgba(217,217,217,255)] ">
+            <div>
+                <div class="sticky top-0">
+                    <div>
+                        <div class="bg-[rgba(245,245,245,255)] p-20 "></div>
+                       <div >
+                          <div class="m-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)]">
+                              <button [routerLink]="['/ListMenu']" routerLinkActive="active" class="p-5 w-full h-full">
+                                <div class="flex items-center responsive-text">
+                                  <img src="assets/image/menu_list_2.png">
+                                  <p class="mx-2">รายการอาหาร</p>
+                                </div>
+                              </button>
+                            </div>
+                            
+                            <div class="m-5  hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] responsive-text ">
+                                <button [routerLink]="['/OrderMenu']" routerLinkActive="active" class="p-5 w-full h-full">
+                                    <div class="flex items-center">
+                                        <img src="assets/image/menu_order.png">
+                                        <p class="mx-2">ออเดอร์</p>                                     
+                                    </div>  
+                                </button>
+                            </div>
+                            <div class="m-5 hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] responsive-text ">
+                                <button [routerLink]="['/ListEdit']" routerLinkActive="active" class="p-5 w-full h-full">
+                                      <div class="flex items-center">
+                                        <img src="assets/image/menu_edit.png">
+                                        <p class="mx-2">แก้ไขรายการ</p>
+                                      </div>
+                                  </button>
+                            </div>
+                            <div class="m-5 hover:bg-yellow-400 hover:text-white bg-white rounded-full text-lg text-[rgb(129,125,125)] responsive-text ">
+                                <button [routerLink]="['/Report']" routerLinkActive="active" class="p-5 w-full h-full">
+                                      <div class="flex items-center">
+                                        <img src="assets/image/menu_report.png">
+                                        <p class="mx-2">รายงาน</p>
+                                      </div>
+                                  </button>
+                              </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    
+        <!-- ลิ้งทำRoutesเปลี่ยนสลับหน้า -->
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+  
+      </div>
+    </body>     
+
+
+
+
+
+
+
+
+
+

@@ -4,7 +4,15 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImageTop: {
+        'background-image-top': "url('assets/image/imageFoodLogo.png')",
+      },
+
+      backgroundImage: {
+        'background-image': "url('assets/image/imagebackground.png')",
+      }
+    },
   },
   plugins: [],
 }
