@@ -13,6 +13,7 @@ import { ListMenuComponent } from './fontend-admin/list-menu/list-menu.component
 import { OrderMenuComponent } from './fontend-admin/order-menu/order-menu.component';
 import { ListEditComponent } from './fontend-admin/list-edit/list-edit.component';
 import { ReportComponent } from './fontend-admin/report/report.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // const appRoutes: Routes = [
 //   { path: 'ListMenu', component: ListMenuComponent },
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only set true
