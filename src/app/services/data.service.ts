@@ -15,6 +15,10 @@ export class DataService {
     return this.http.get<any[]>(environment.apiUrl);
   }
 
+  getOrdersById(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/${id}`)
+  }
+
   updateOrder(orderId: number, updatedOrder: any): Observable<any> {
     const updateUrl = `${environment.apiUrl}/${orderId}`;
     return this.http.put<any>(updateUrl, updatedOrder);

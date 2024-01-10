@@ -26,7 +26,7 @@ export class ListEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onInitForm()
+    this.onInitForm()    
     this.dataService.getOrders().subscribe((data) => {
       this.orders = data;
     });
@@ -34,6 +34,7 @@ export class ListEditComponent implements OnInit {
 
   editOrder(order: any): void {
     this.selectedOrder = order;
+    this.dataService.getOrders
   }
 
   saveChanges(): void {
