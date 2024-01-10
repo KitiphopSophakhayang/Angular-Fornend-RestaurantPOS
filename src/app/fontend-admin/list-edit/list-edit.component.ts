@@ -18,11 +18,15 @@ export class ListEditComponent implements OnInit {
 
   onInitForm() {
     this.editForm = this.fb.group({
-      
+      price: [null],
+      description: [null],
+      name: [null],
+      foodType: [null],
     })
   }
 
   ngOnInit() {
+    this.onInitForm()
     this.dataService.getOrders().subscribe((data) => {
       this.orders = data;
     });
@@ -33,6 +37,10 @@ export class ListEditComponent implements OnInit {
   }
 
   saveChanges(): void {
+
+    console.log(this.editForm.getRawValue());
+    
+
     if (this.selectedOrder) {
       this.dataService.updateOrder(this.selectedOrder.id, this.selectedOrder).subscribe(
         (updatedOrder) => {

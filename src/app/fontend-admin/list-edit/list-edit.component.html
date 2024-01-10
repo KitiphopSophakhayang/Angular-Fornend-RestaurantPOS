@@ -68,25 +68,27 @@
 
              <div *ngIf="selectedOrder" class="px-16 mb-4">
                 <p class="text-gray-500">ประเภทอาหาร</p>
-                <input type="text" [ngModel]="selectedOrder.food_type" (ngModelChange)="selectedOrder.food_type = $event" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+                <input type="text" formGroupName="foodType" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
               </div>
               <div *ngIf="selectedOrder" class="px-16 mb-4">
                 <p class="text-gray-500">ชื่ออาหาร</p>
-                <input type="text" [ngModel]="selectedOrder.name" (ngModelChange)="selectedOrder.name = $event" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+                <input type="text" formGroupName="name" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
               </div>
               <div *ngIf="selectedOrder" class="px-16 mb-4">
                 <p class="text-gray-500">รายละเอียด</p>
-                <textarea [ngModel]="selectedOrder.description" (ngModelChange)="selectedOrder.description = $event" class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2"></textarea>
+                <textarea formGroupName="description" class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2"></textarea>
               </div>
               <div *ngIf="selectedOrder" class="px-16 mt-4 mb-4">
                 <p class="text-gray-500">ราคา</p>
-                <input type="text" [ngModel]="selectedOrder.price" (ngModelChange)="selectedOrder.price = $event" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+                <input type="text" formControlName="price" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
               </div>
             
             <div class="px-12">
                 <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
                     <!-- ปุ่มเสร็จสิ้น -->
-                    <button class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
+                    <button class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24"
+                      (click)="saveChanges()"
+                    >
                         <div class="flex items-center justify-center">
                             <p class="responsive-text">เสร็จสิ้น</p>
                         </div>

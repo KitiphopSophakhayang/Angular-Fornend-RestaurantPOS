@@ -14,7 +14,7 @@ import { OrderMenuComponent } from './fontend-admin/order-menu/order-menu.compon
 import { ListEditComponent } from './fontend-admin/list-edit/list-edit.component';
 import { ReportComponent } from './fontend-admin/report/report.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // const appRoutes: Routes = [
 //   { path: 'ListMenu', component: ListMenuComponent },
@@ -51,6 +51,7 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only set true
