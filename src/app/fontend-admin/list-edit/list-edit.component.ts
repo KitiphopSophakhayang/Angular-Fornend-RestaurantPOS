@@ -1,6 +1,7 @@
 // list-edit.component.ts
 
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,8 +12,15 @@ import { DataService } from 'src/app/services/data.service';
 export class ListEditComponent implements OnInit {
   orders: any[] = [];
   selectedOrder: any = null;
+  editForm!: FormGroup;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private fb: FormBuilder) { }
+
+  onInitForm() {
+    this.editForm = this.fb.group({
+      
+    })
+  }
 
   ngOnInit() {
     this.dataService.getOrders().subscribe((data) => {

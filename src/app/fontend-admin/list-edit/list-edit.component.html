@@ -51,32 +51,14 @@
                       <p class="font-bold mx-2">{{ order.price }} B</p>
                     </div>
                   </div>
-
-
-                <!-- <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-white shadow-md rounded-xl" *ngFor="let order of orders">
-                  <div >
-                    <img src="assets/image/food01.png">
-                    <p class="mx-2">{{ order.name }}</p>
-                    <p class="font-bold mx-2">{{ order.price }} B</p>
-                  </div>
-              </div>  -->
-
-              
           </div>
         </div>
 
         <!-- ฝั่งออเดอร์ -->
 
-        <div class="responsive-text">
+        <div class="responsive-text" [formGroup]="editForm">
             <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
            
-            <!-- <div class="p-10 flex items-center justify-center">
-                <div class="bg-[rgba(217,217,217,255)]">
-                    <img src="assets/image/image_add.png" class="p-5 w-52 h-52">
-                </div>
-             </div> -->
-
-
              <div class="p-10 flex items-center justify-center ">
                 <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer">
                   <input type="file" id="fileInput" style="display: none" >
