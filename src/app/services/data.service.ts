@@ -3,28 +3,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
-  private apiUrl = 'http://localhost:8080/orders';
-
   constructor(private http: HttpClient) { }
 
   getOrders(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(environment.apiUrl);
+  }
+
+  getOrdersById(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.apiUrl}/${id}`)
   }
 
   updateOrder(orderId: number, updatedOrder: any): Observable<any> {
-    const updateUrl = `${this.apiUrl}/${orderId}`;
+    const updateUrl = `${environment.apiUrl}/${orderId}`;
     return this.http.put<any>(updateUrl, updatedOrder);
   }
 
   // เพิ่มฟังก์ชันลบรายการ
   deleteOrder(orderId: number): Observable<void> {
-    const deleteUrl = `${this.apiUrl}/${orderId}`;
+    const deleteUrl = `${environment.apiUrl}/${orderId}`;
     return this.http.delete<void>(deleteUrl);
   }
 }

@@ -1,7 +1,8 @@
 // list-edit.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/data.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-list-edit',
@@ -11,10 +12,21 @@ import { DataService } from 'src/app/data.service';
 export class ListEditComponent implements OnInit {
   orders: any[] = [];
   selectedOrder: any = null;
+  editForm!: FormGroup;
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private fb: FormBuilder) { }
+
+  onInitForm() {
+    this.editForm = this.fb.group({
+      price: [null],
+      description: [null],
+      name: [null],
+      foodType: [null],
+    })
+  }
 
   ngOnInit() {
+    this.onInitForm()    
     this.dataService.getOrders().subscribe((data) => {
       this.orders = data;
     });
@@ -22,9 +34,14 @@ export class ListEditComponent implements OnInit {
 
   editOrder(order: any): void {
     this.selectedOrder = order;
+    this.dataService.getOrders
   }
 
   saveChanges(): void {
+
+    console.log(this.editForm.getRawValue());
+    
+
     if (this.selectedOrder) {
       this.dataService.updateOrder(this.selectedOrder.id, this.selectedOrder).subscribe(
         (updatedOrder) => {
