@@ -16,16 +16,6 @@ import { ReportComponent } from './fontend-admin/report/report.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-// const appRoutes: Routes = [
-//   { path: 'ListMenu', component: ListMenuComponent },
-//   { path: 'OrderMenu', component: OrderMenuComponent },
-//   { path: 'ListEdit', component: ListEditComponent },
-//   { path: '',
-//     redirectTo: '/ListEdit',
-//     pathMatch: 'full'
-//   },
-//   { path: '**', component: ReportComponent }
-// ];
 
 const appRoutes: Routes = [
   { path: 'ListMenu', component: ListMenuComponent },

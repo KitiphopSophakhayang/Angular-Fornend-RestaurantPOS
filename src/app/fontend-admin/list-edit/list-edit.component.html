@@ -1,109 +1,137 @@
-    <div class="grid grid-cols-[7fr_5fr] ">       
-        <!-- ฝั่งรายการอาหาร -->
-        <div class="bg-[rgba(245,245,245,255)] ">
-      
-            <div class="pl-4 pt-10">
-                <p class="text-stone-600 sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl ">แก้ไขรายการ</p>
-            </div>
-            <div class="grid grid-cols-4 gap-3 mx-3 mt-5 responsive-text">
-              <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">                  <div class="flex flex-col items-center">
-                      <img src="assets/image/plus.png" class="w-20 ">
-                        <p class="text-white">เพิ่มรายการ</p>
-                    </div>
-                </div>
-                
-                <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">
-                  <div class="flex flex-col items-center">
-                      <img src="assets/image/noodles.png">
-                      <p class="mx-auto">ก๋วยเตี๋ยว</p>
-                    </div>
-                </div>
-                <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">
-                  <div class="flex flex-col items-center">
-                      <img src="assets/image/snacks.png">
-                      <p class="mx-auto">ของว่าง</p>
-                    </div>
-                </div>
-                <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500   rounded-3xl">
-                  <div class="flex flex-col items-center">
-                      <img src="assets/image/drink.png">
-                      <p class="mx-auto">เครื่องดื่ม</p>
-                    </div>
-                </div> 
-            </div>
+<div class="grid grid-cols-[7fr_5fr] ">       
+  <!-- ฝั่งรายการอาหาร -->
+  <div class="bg-[rgba(245,245,245,255)] ">
 
-            <div class="pl-4 mt-3 ">
-                <p class="text-stone-600 responsive-text ">รายการอาหารทั้งหมด</p>
-            </div>
-
-            <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
-                <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-[rgba(217,217,217,255)] shadow-md rounded-xl">
-                    <div class="flex flex-col items-center">
-                        <img src="assets/image/plus.png" class="w-20 ">
-                        <p class="text-white">เพิ่มรายการ</p>
-                    </div>
-                </div>
-
-                <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-white shadow-md rounded-xl" *ngFor="let order of orders">
-                    <div (click)="editOrder(order)">
-                      <img src="assets/image/food01.png">
-                      <p class="mx-2">{{ order.name }}</p>
-                      <p class="font-bold mx-2">{{ order.price }} B</p>
-                    </div>
-                  </div>
+      <div class="pl-4 pt-10">
+          <p class="text-stone-600 sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl ">แก้ไขรายการ</p>
+      </div>
+      <div class="grid grid-cols-4 gap-3 mx-3 mt-5 responsive-text">
+        <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">                 
+           <div class="flex flex-col items-center">
+                <img src="assets/image/plus.png" class="w-20 ">
+                  <p class="text-white">เพิ่มรายการ</p>
+              </div>
           </div>
-        </div>
-
-        <!-- ฝั่งออเดอร์ -->
-
-        <div class="responsive-text" [formGroup]="editForm">
-            <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
-           
-             <div class="p-10 flex items-center justify-center ">
-                <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer">
-                  <input type="file" id="fileInput" style="display: none" >
-                  <img src="assets/image/image_add.png" class="p-5 w-52 h-52 hover:border-2">
-                </label>
+          
+          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">
+            <div class="flex flex-col items-center">
+                <img src="assets/image/noodles.png">
+                <p class="mx-auto">ก๋วยเตี๋ยว</p>
               </div>
-
-             <div *ngIf="selectedOrder" class="px-16 mb-4">
-                <p class="text-gray-500">ประเภทอาหาร</p>
-                <input type="text" formGroupName="foodType" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-              </div>
-              <div *ngIf="selectedOrder" class="px-16 mb-4">
-                <p class="text-gray-500">ชื่ออาหาร</p>
-                <input type="text" formGroupName="name" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-              </div>
-              <div *ngIf="selectedOrder" class="px-16 mb-4">
-                <p class="text-gray-500">รายละเอียด</p>
-                <textarea formGroupName="description" class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2"></textarea>
-              </div>
-              <div *ngIf="selectedOrder" class="px-16 mt-4 mb-4">
-                <p class="text-gray-500">ราคา</p>
-                <input type="text" formControlName="price" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-              </div>
-            
-            <div class="px-12">
-                <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
-                    <!-- ปุ่มเสร็จสิ้น -->
-                    <button class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24"
-                      (click)="saveChanges()"
-                    >
-                        <div class="flex items-center justify-center">
-                            <p class="responsive-text">เสร็จสิ้น</p>
-                        </div>
-                    </button>
-            
-                    <!-- ปุ่มลบ -->
-                    <button class="hover:border-2 w-full hover:bg-red-500 bg-[rgba(255,0,0,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
-                        <div class="flex items-center justify-center">
-                            <p class="responsive-text">ลบ</p>
-                        </div>
-                    </button>
-                </div>
-            </div>
-
           </div>
-        </div>
+          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">
+            <div class="flex flex-col items-center">
+                <img src="assets/image/snacks.png">
+                <p class="mx-auto">ของว่าง</p>
+              </div>
+          </div>
+          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500   rounded-3xl">
+            <div class="flex flex-col items-center">
+                <img src="assets/image/drink.png">
+                <p class="mx-auto">เครื่องดื่ม</p>
+              </div>
+          </div> 
       </div>
 
+      <div class="pl-4 mt-3 ">
+          <p class="text-stone-600 responsive-text ">รายการอาหารทั้งหมด</p>
+      </div>
+
+      <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
+        <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-[rgba(217,217,217,255)] shadow-md rounded-xl" (click)="onCreateNewOrder()">
+          <div class="flex flex-col items-center">
+            <img src="assets/image/plus.png" class="w-20 ">
+            <p class="text-white">เพิ่มรายการ</p>
+          </div>
+        </div>
+        
+
+          <div  class="hover:border-2 border-orange-500 flex items-center justify-center bg-white shadow-md rounded-xl" *ngFor="let order of orders" (click)="onSelectOrder(order)" >
+              <div >
+                <img src="assets/image/food01.png">
+                <p class="mx-2">{{ order.name }}</p>
+                <p class="font-bold mx-2">{{ order.price }} B</p>
+              </div>
+            </div>
+    </div>
+  </div>
+
+  <div *ngIf="!CreateNewOrder && showEditForm" class="responsive-text">
+      <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
+     
+       <div class="p-10 flex items-center justify-center ">
+          <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer">
+            <input type="file" id="fileInput" style="display: none" >
+            <img src="assets/image/image_add.png" class="p-5 w-52 h-52 hover:border-2">
+          </label>
+        </div>
+
+        <div class="px-16 mb-4">
+          <p class="text-gray-500">ประเภทอาหาร</p>
+          <input [(ngModel)]="selectedOrder.food_type"  required name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+        </div>
+        <div class="px-16 mb-4">
+          <p class="text-gray-500">ชื่ออาหาร</p>
+          <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+        </div>
+        <div class="px-16 mb-4">
+          <p class="text-gray-500">รายละเอียด</p>
+          <input [(ngModel)]="selectedOrder.image"  class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2">
+        </div>
+        <div class="px-16 mt-4 mb-4">
+          <p class="text-gray-500">ราคา</p>
+          <input type="number" [(ngModel)]="selectedOrder.price" name="price" required  class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+        </div>
+    
+        <div class="px-12">
+          <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
+              <!-- ปุ่มเสร็จสิ้น -->
+              <button (click)="updateOrder()" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
+              <div class="flex items-center justify-center">
+                <p class="responsive-text">เสร็จสิ้น</p>
+              </div>
+            </button>
+      
+            <button (click)="deleteOrder()" class="hover:border-2 w-full hover:bg-red-500 bg-[rgba(255,0,0,1)] rounded-3xl text-lg text-white sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
+              <div class="flex items-center justify-center">
+                <p class="responsive-text">ลบ</p>
+              </div>
+           </button>
+          </div>
+        </div>
+
+    </div>
+
+  </div>
+
+    <!-- ฟอร์มสร้างรายการ -->
+
+      <div *ngIf="CreateNewOrder" class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
+          <h2 class="text-2xl font-bold mb-4">Create New Order</h2>
+          
+          <form (ngSubmit)="createOrder()" class="space-y-4" [formGroup]="testForm">
+              <div class="flex flex-col">
+                  <label for="name" class="text-lg mb-2">Name:</label>
+                  <input id="name" formControlName="name" required class="border p-2">
+              </div>
+              
+              <div class="flex flex-col">
+                  <label for="foodType" class="text-lg mb-2">Food Type:</label>
+                  <input id="foodType" formControlName="foodType" required class="border p-2">
+              </div>
+              
+              <div class="flex flex-col">
+                  <label for="price" class="text-lg mb-2">Price:</label>
+                  <input id="price" type="number" formControlName="price" required class="border p-2">
+              </div>
+              
+              <div class="flex flex-col">
+                  <label for="imageUrl" class="text-lg mb-2">Image URL:</label>
+                  <input id="imageUrl" formControlName="imageUrl" class="border p-2">
+              </div>
+              
+              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Order</button>
+          </form>
+      </div>
+
+</div>
