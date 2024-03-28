@@ -1,5 +1,4 @@
 <div class="grid grid-cols-[7fr_5fr] ">       
-  <!-- ฝั่งรายการอาหาร -->
   <div class="bg-[rgba(245,245,245,255)] ">
 
       <div class="pl-4 pt-10">
@@ -39,53 +38,65 @@
 
       <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
         <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-[rgba(217,217,217,255)] shadow-md rounded-xl" (click)="onCreateNewOrder()">
-          <div class="flex flex-col items-center">
-            <img src="assets/image/plus.png" class="w-20 ">
-            <p class="text-white">เพิ่มรายการ</p>
+            <div class="flex flex-col items-center">
+                <img src="assets/image/plus.png" class="w-20 ">
+                <p class="text-white">เพิ่มรายการ</p>
+            </div>
+        </div>
+
+        <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-white shadow-md rounded-xl" *ngFor="let file of files" (click)="onSelectOrder(file)">
+          <div >
+              <img [src]="file.test"  alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
+              <p class="mx-2">{{ file.name }}</p>
+              <p class="font-bold mx-2">{{ file.price }} ฿</p>
           </div>
         </div>
         
-
-          <div  class="hover:border-2 border-orange-500 flex items-center justify-center bg-white shadow-md rounded-xl" *ngFor="let order of orders" (click)="onSelectOrder(order)" >
-              <div >
-                <img src="assets/image/food01.png">
-                <p class="mx-2">{{ order.name }}</p>
-                <p class="font-bold mx-2">{{ order.price }} B</p>
-              </div>
-            </div>
+    </div>
+    
+  </div>
+ 
+  <div *ngIf="!CreateNewOrder && !showEditForm" class="grid bg-white h-screen sticky top-0 place-items-center ">
+    <div>
+      <img src="assets/image/wired-flat-245-edit-document.gif">
+      <h2 class="text-4xl font-bold text-center text-gray-500 responsive-text">กรุณาเลือกรายการ</h2>
     </div>
   </div>
+  
+
+  
 
   <div *ngIf="!CreateNewOrder && showEditForm" class="responsive-text">
       <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
-     
-       <div class="p-10 flex items-center justify-center ">
+        <h2 class="text-2xl font-bold m-auto text-gray-500">แก้ไขรายการอาหาร</h2>
+
+        <div class="p-5 flex items-center justify-center">
           <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer">
-            <input type="file" id="fileInput" style="display: none" >
-            <img src="assets/image/image_add.png" class="p-5 w-52 h-52 hover:border-2">
+            <input type="file" id="fileInput" class="hidden" (change)="onFileSelected($event)">
+            <img src="assets/image/image_add.png" class=" hover:border-2 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44">
           </label>
         </div>
-
-        <div class="px-16 mb-4">
+        
+        <div class="px-16 mb-4" *ngIf="selectedOrder">
           <p class="text-gray-500">ประเภทอาหาร</p>
-          <input [(ngModel)]="selectedOrder.food_type"  required name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          <input [(ngModel)]="selectedOrder.foodType" required name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
         </div>
-        <div class="px-16 mb-4">
+        <div class="px-16 mb-4" *ngIf="selectedOrder">
           <p class="text-gray-500">ชื่ออาหาร</p>
           <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
         </div>
-        <div class="px-16 mb-4">
+        <div class="px-16 mb-4" *ngIf="selectedOrder">
           <p class="text-gray-500">รายละเอียด</p>
-          <input [(ngModel)]="selectedOrder.image"  class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2">
+          <input [(ngModel)]="selectedOrder.imageName" class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2">
         </div>
-        <div class="px-16 mt-4 mb-4">
+        <div class="px-16 mt-4 mb-4" *ngIf="selectedOrder">
           <p class="text-gray-500">ราคา</p>
-          <input type="number" [(ngModel)]="selectedOrder.price" name="price" required  class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          <input type="number" [(ngModel)]="selectedOrder.price" name="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
         </div>
+        
     
         <div class="px-12">
           <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
-              <!-- ปุ่มเสร็จสิ้น -->
               <button (click)="updateOrder()" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
               <div class="flex items-center justify-center">
                 <p class="responsive-text">เสร็จสิ้น</p>
@@ -104,34 +115,56 @@
 
   </div>
 
-    <!-- ฟอร์มสร้างรายการ -->
 
-      <div *ngIf="CreateNewOrder" class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
-          <h2 class="text-2xl font-bold mb-4">Create New Order</h2>
+    <div *ngIf="CreateNewOrder"  class="responsive-text">
+      <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0" >
+        <h2 class="text-2xl font-bold m-auto text-gray-500">เพิ่มรายการอาหาร</h2>
+        <form class="space-y-4" [formGroup]="testForm">
+      
+           <div class="p-5 flex flex-col items-center justify-center">
+            <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer mb-4">
+              <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
+              <img src="assets/image/image_add.png" class="hover:border-2 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44">
+            </label>
+            <ul class="list-disc pl-5">
+              <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+            </ul>
+          </div>  
+       
+          <!-- <div>
+            <button (click)="openDialog()" class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+               {{ dialogRef === null ? 'Open' : 'Close' }} Dialog
+            </button>
+          </div> -->
+      
+          <div class="px-16 mb-4">
+            <p class="text-gray-500">ชื่ออาหาร</p>
+            <input id="name" formControlName="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          </div>
           
-          <form (ngSubmit)="createOrder()" class="space-y-4" [formGroup]="testForm">
-              <div class="flex flex-col">
-                  <label for="name" class="text-lg mb-2">Name:</label>
-                  <input id="name" formControlName="name" required class="border p-2">
-              </div>
-              
-              <div class="flex flex-col">
-                  <label for="foodType" class="text-lg mb-2">Food Type:</label>
-                  <input id="foodType" formControlName="foodType" required class="border p-2">
-              </div>
-              
-              <div class="flex flex-col">
-                  <label for="price" class="text-lg mb-2">Price:</label>
-                  <input id="price" type="number" formControlName="price" required class="border p-2">
-              </div>
-              
-              <div class="flex flex-col">
-                  <label for="imageUrl" class="text-lg mb-2">Image URL:</label>
-                  <input id="imageUrl" formControlName="imageUrl" class="border p-2">
-              </div>
-              
-              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create Order</button>
-          </form>
+          <div class="px-16 mb-4">
+            <p class="text-gray-500">ประเภทอาหาร</p>
+            <input id="foodType" formControlName="foodType" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          </div>
+          
+          <div class="px-16 mb-4">
+            <p class="text-gray-500">ราคา</p>
+            <input id="price" type="number" formControlName="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          </div>
+        
+          <div class="px-12">
+            <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
+             
+              <button type="button" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24" (click)="createOrder()" [disabled]="!selectedFile">
+                <div class="flex items-center justify-center">
+                  <p class="responsive-text">เสร็จสิ้น</p>
+                </div>
+              </button>
+            </div>
+          </div>
+          
+        </form>
       </div>
+    </div>    
+</div> 
 
-</div>

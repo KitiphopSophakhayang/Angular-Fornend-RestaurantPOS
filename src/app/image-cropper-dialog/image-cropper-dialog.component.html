@@ -1,0 +1,23 @@
+<mat-dialog-content>
+  <input type="file" (change)="fileChangeEvent($event)" accept="image/*" class="p-2 border border-gray-300 rounded-md">
+
+  <image-cropper
+    [imageChangedEvent]="imageChangedEvent"
+    (imageCropped)="imageCropped($event)"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 3"
+    [resizeToWidth]="2"
+    format="png"
+    class="block m-auto border border-gray-300 rounded-md"
+    [style.width.px]="500"
+    [style.height.px]="400"
+  ></image-cropper>
+
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="true" class="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Close</button>
+    <button mat-button (click)="done()" class="p-2 bg-green-500 text-white rounded-md hover:bg-green-600">Done</button>
+  </mat-dialog-actions>
+</mat-dialog-content>
+
+
+

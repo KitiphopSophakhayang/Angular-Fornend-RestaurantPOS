@@ -5,10 +5,17 @@
 
 
 /*ฟ้อน*/
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Sans:ital,wght@1,500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500&family=Noto+Sans:ital,wght@1,500&display=swap'); */
 
-body{
-  font-family: 'Noto Sans', sans-serif;
+@font-face {
+  font-family: 'Noto Sans Thai' ;
+  src: 
+    url('./assets/fonts/NotoSansThai_Condensed-Regular.ttf') format('truetype'),
+    url('./assets/fonts/NotoSansThai_Condensed-Bold.ttf') format('truetype')
+}
+
+*{
+  /* font-family: 'Noto Sans', sans-serif; */
   font-family: 'Noto Sans Thai', sans-serif;
 }
 
@@ -31,3 +38,5 @@ body{
     background-position: center; /* จัดตำแหน่งภาพให้ตรงกลาง */
     background-repeat: no-repeat; /* ไม่ต้องการการทำซ้ำภาพ */
   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

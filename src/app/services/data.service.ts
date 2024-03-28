@@ -1,23 +1,42 @@
 // data.service.ts
 
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
+import { HttpClient, HttpHeaders ,HttpEventType, HttpResponse} from '@angular/common/http';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { DiningTable } from './dining-table.model';
 
-export interface Order {
-  id: number;
-  name: string;
-  food_type: string;
-  price: number;
-  image: string;
+
+export class Order {
+  id: number | undefined;
+  name: string | undefined;
+  foodType: string | undefined;
+  price: number | undefined;
+  imageURL: string | undefined;
+  imageName: string | undefined;
 }
+
+export class OrderItem {
+  orderItemId: number | undefined;
+  order: Order | undefined;
+  orderDate: Date | undefined;
+  totalPrice: number | undefined;
+  table: DiningTable | undefined;
+  status: string | undefined;
+  tableNumber: string | undefined;
+  transaction_id: any;
+  quantity: number | undefined; 
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = environment.apiUrl; // แก้ไข URL ตามที่ Spring Boot API ของคุณอยู่
+
+  private baseUrl = environment.apiUrl;
+  private apiUrl = 'http://localhost:8085/api';
+  protected transectionId = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) { }
 
@@ -25,23 +44,57 @@ export class OrderService {
     return this.http.get<Order[]>(`${this.baseUrl}/orders`);
   }
 
-  getOrdersById(id: number): Observable<any[]> {
-    return this.http.get<any[]>(`${environment.apiUrl}/${id}`)
+  addOrder(order: Order, file: File): Observable<Order> {
+    const formData: FormData = new FormData();
+    // ตรวจสอบว่าค่าของ order.name, order.foodType, และ order.price ไม่ใช่ undefined ก่อนที่จะใช้
+    if (order.name) formData.append('name', order.name);
+    if (order.foodType) formData.append('foodType', order.foodType);
+    if (order.price) formData.append('price', order.price.toString());
+    formData.append('file', file);
+  
+    return this.http.post<Order>(`${this.baseUrl}/addOrder`, formData);
+  }
+  
+
+  deleteOrder(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/delete/${id}`);
   }
 
   getOrderById(id: number): Observable<Order> {
     return this.http.get<Order>(`${this.baseUrl}/orderById/${id}`);
   }
-
-  createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(`${this.baseUrl}/addOrder`, order);
+  updateOrder(id: number, formData: FormData): Observable<Order> {
+    return this.http.put<Order>(`${this.baseUrl}/update/${id}`, formData);
   }
 
-  updateOrder(order: Order): Observable<Order> {
-    return this.http.put<Order>(`${this.baseUrl}/update`, order);
+
+  addOrderItems(orderItems: OrderItem[]): Observable<any> {
+    return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
+  }
+  
+  getAllTables(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/tables`);
   }
 
-  deleteOrder(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.baseUrl}/delete/${id}`);
+
+
+  getAllOrderItems(): Observable<OrderItem[]> {
+    return this.http.get<OrderItem[]>(`${this.baseUrl}/orderItems`);
   }
+
+  getOrderItemsByTransactionId(transactionId: string): Observable<OrderItem[]> {
+    return this.http.get<OrderItem[]>(`${this.baseUrl}/orderItems/${transactionId}`);
+  }
+
+
+  getTableDataByTableId(tableId: number): Observable<OrderItem[]> {
+    return this.http.get<OrderItem[]>(`${this.baseUrl}/orderItems/getTableData/${tableId}`);
+  }
+  
+  
+
 }
+
+
+
+

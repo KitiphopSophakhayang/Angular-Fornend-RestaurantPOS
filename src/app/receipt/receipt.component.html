@@ -1,0 +1,83 @@
+<!-- <div class="max-w-md mx-auto responsive-text">
+  <div class="py-2 text-center">
+    <p class="mb-4 font-bold">ตั่วโกเกี๋ยวเตี๋ยวเรือ</p>
+    <p><span class="font-semibold">ออเดอร์</span> #{{ uniqueTransactionIds[0] }} <span class="font-semibold">โต๊ะ</span> #{{ data.tableNumber }}</p>
+    <p><span class="font-semibold"></span> {{ data.dateTime | date: 'dd/MM/yyyy / HH:mm' }}</p>
+  </div>
+  <div class="border-t-4">
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th class="font-semibold text-left">รายการ</th>
+          <th class="font-semibold text-left">จำนวน</th>
+          <th class="font-semibold text-left">ราคา</th>
+        </tr>
+      </thead>
+      <tbody class="border-t-4">
+        <tr *ngFor="let order of data.selectedOrders; let i = index" class="text-left">
+          <td>{{ i + 1 }}. {{ order.name }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.price }}</td>
+        </tr>
+        <tr class="border-t-4">
+          <td class="font-semibold">รวม</td>
+          <td class="invisible">ราคารวม</td>
+          <td class="font-semibold">{{ data.totalPrice}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="flex justify-between mt-5">
+    <p class="font-semibold">ยอดรวม</p>
+    <p class="text-right pr-14 font-semibold border-y-4">{{ data.totalPrice }} บาท</p>
+  </div>
+
+  <div class="mb-5 flex justify-center">
+    <button (click)="onCancel()" class="bg-yellow-500 hover:bg-yellow-400 text-white py-2 px-4 rounded-3xl mt-4 mr-2 w-32 ">
+      เสร็จสิ้น
+    </button>
+  </div>  
+</div> -->
+
+ <div class="max-w-md mx-auto responsive-text">
+  <div class="py-2 text-center">
+    <p class="mb-4 font-bold">ตั่วโกเกี๋ยวเตี๋ยวเรือ</p>
+    <p><span class="font-semibold">ออเดอร์</span> #{{ uniqueTransactionIds[0] }} <span class="font-semibold">โต๊ะ</span> #{{ data.tableNumber }}</p>
+    <p><span class="font-semibold"></span> {{ data.dateTime | date: 'dd/MM/yyyy / HH:mm' }}</p>
+  </div>
+  <div class="border-t-4">
+    <table class="w-full">
+      <thead>
+        <tr>
+          <th class="font-semibold text-left">รายการ</th>
+          <th class="font-semibold text-left">จำนวน</th>
+          <th class="font-semibold text-left">ราคา</th>
+        </tr>
+      </thead>
+      <tbody class="border-t-4">
+        <tr *ngFor="let order of orders; let i = index" class="text-left">
+          <td>{{ i + 1 }}. {{ order.order?.name }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.order?.price }}</td>
+        </tr>
+        <tr class="border-t-4">
+          <td class="font-semibold">รวม</td>
+          <td class="invisible">ราคารวม</td>
+          <td class="font-semibold">{{ getTotalPrice() }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="flex justify-between mt-5">
+    <p class="font-semibold">ยอดรวม</p>
+    <p class="text-right pr-14 font-semibold border-y-4">{{ getTotalPrice() }} บาท</p>
+  </div>
+
+  <div class="mb-5 flex justify-center">
+    <button (click)="onCancel()" class="bg-yellow-500 hover:bg-yellow-400 text-white py-2 px-4 rounded-3xl mt-4 mr-2 w-32 ">
+      เสร็จสิ้น
+    </button>
+  </div>  
+</div> 
