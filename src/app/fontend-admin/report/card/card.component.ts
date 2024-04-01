@@ -18,6 +18,4 @@ export class CardComponent {
         this.service.getAllTable().subscribe(res => this.allTable = res)
         this.service.getAllMenu().subscribe(res => this.allMenu = res)
     }
-
-
 }

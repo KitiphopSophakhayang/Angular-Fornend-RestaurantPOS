@@ -1,21 +1,21 @@
-<div class="grid grid-cols-[12fr]  mt-5">
-  <!-- ฝั่งรายการอาหาร -->
-  <div class="bg-[rgba(245,245,245,255)]">
-    <!-- <div class="p-10 flex items-center responsive-text">
-      <select class="ml-auto h-10 w-28 text-center">
-        <option>วัน</option>
-        <option>เดือน</option>
-        <option>ปี</option>
-      </select>
-    </div> -->
+<div class="grid grid-cols-[12fr] mt-5">
+  <!-- card -->
+  <app-card></app-card>
 
-    <!-- card -->
-    <app-card></app-card>
-
-    <!-- box -->
-    <div class="m-8">
-      <div class="grid grid-cols-2 bg-white w-full h-screen p-5">
+  <!-- box -->
+  <div class="content-wapper">
+    <div
+      class="grid grid-cols-3 gap-4 bg-white w-full rounded-3xl"
+      style="padding: 50px"
+    >
+      <!-- bar chart -->
+      <div class="m-2 col-span-2">
         <app-bar></app-bar>
+      </div>
+
+      <!-- line chart -->
+      <div class="m-2">
+        <app-pie></app-pie>
       </div>
     </div>
   </div>
