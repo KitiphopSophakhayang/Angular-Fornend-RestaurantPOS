@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders ,HttpEventType, HttpResponse} from '@angular/co
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DiningTable } from './dining-table.model';
+// import { v4 as uuidv4 } from 'uuid';
 
 
 export class Order {
@@ -26,6 +27,7 @@ export class OrderItem {
   tableNumber: string | undefined;
   transaction_id: any;
   quantity: number | undefined; 
+  receiptNumber: string | undefined;
 }
 
 
@@ -54,6 +56,23 @@ export class OrderService {
   
     return this.http.post<Order>(`${this.baseUrl}/addOrder`, formData);
   }
+
+
+  // generateReceiptNumber(): string {
+  //   return uuidv4(); // สร้าง UUID เป็นเลขใบเสร็จ
+  // }
+
+  addOrderItemsWithReceiptNumber(orderItems: OrderItem[]): Observable<any> {
+    // สร้างเลขใบเสร็จสำหรับทุกรายการ
+    // orderItems.forEach(orderItem => {
+    //   orderItem.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จ
+    // });
+  
+    // ส่งข้อมูลรายการสั่งซื้อพร้อมเลขใบเสร็จไปยัง API หรือเซิร์ฟเวอร์เพื่อเก็บในฐานข้อมูล
+    return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
+  }
+  
+  
   
 
   deleteOrder(id: number): Observable<any> {
@@ -68,15 +87,18 @@ export class OrderService {
   }
 
 
+
+
   addOrderItems(orderItems: OrderItem[]): Observable<any> {
     return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
   }
   
+
+
+
   getAllTables(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/tables`);
   }
-
-
 
   getAllOrderItems(): Observable<OrderItem[]> {
     return this.http.get<OrderItem[]>(`${this.baseUrl}/orderItems`);
@@ -85,7 +107,6 @@ export class OrderService {
   getOrderItemsByTransactionId(transactionId: string): Observable<OrderItem[]> {
     return this.http.get<OrderItem[]>(`${this.baseUrl}/orderItems/${transactionId}`);
   }
-
 
   getTableDataByTableId(tableId: number): Observable<OrderItem[]> {
     return this.http.get<OrderItem[]>(`${this.baseUrl}/orderItems/getTableData/${tableId}`);

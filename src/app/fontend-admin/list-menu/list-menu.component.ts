@@ -8,6 +8,7 @@ import { Order, OrderService } from 'src/app/services/data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { TableSelectionDialogComponent } from 'src/app/table-selection-dialog/table-selection-dialog.component';
 import { ReceiptComponent } from 'src/app/receipt/receipt.component';
+import { v4 as uuidv4 } from 'uuid'; // import uuidv4 มาใช้งาน
 
 
 
@@ -23,11 +24,13 @@ export class ListMenuComponent implements OnInit {
   carts: any = [];
   selectedOrders: any = [];
   addOrders: boolean = false;
+  customReceiptNumber: string | undefined;
   
   constructor(private orderService: OrderService, private router: Router, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getFiles();
+    this.customReceiptNumber = 'ID' + Math.floor(Math.random() * 10000);
   }
 
   getFiles(): void {
@@ -109,7 +112,6 @@ export class ListMenuComponent implements OnInit {
     this.selectedOrders = [];
   }
   
-
 // confirmOrder(selectedTable: any): void {
 //   // คำนวณราคารวมของรายการอาหารที่เลือก
 //   const totalPrice = this.getTotalPrice();
@@ -154,6 +156,7 @@ export class ListMenuComponent implements OnInit {
 //     order.status = 'pending';
 //     order.totalPrice = totalPrice;
 //     order.order = { id: order.id }; // เพิ่ม id ของรายการอาหารลงใน order
+//     order.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จและเก็บไว้ในข้อมูลของรายการอาหาร
 //   });
 
 //   // เพิ่มข้อมูลเกี่ยวกับโต๊ะที่ผู้ใช้เลือกเข้าไปในรายการอาหารที่เลือก (หากมีการเลือกโต๊ะ)
@@ -168,14 +171,16 @@ export class ListMenuComponent implements OnInit {
 //     (response) => {
 //       // หากการสั่งซื้อสำเร็จ
 //       console.log('Order placed successfully:', response);
+
 //       // แสดง popup ใบเสร็จ
 //       this.openReceiptDialog({
 //         transactionId: response.transactionId, // รหัสธุรกรรม
 //         tableNumber: selectedTable.tableNumber, // เลขโต๊ะ
 //         dateTime: new Date(), // วันเวลา
 //         selectedOrders: this.selectedOrders, // รายการอาหารที่เลือก
-//         totalPrice: totalPrice // ราคารวม
+//         totalPrice: totalPrice, // ราคารวม
 //       });
+
 //       // ล้างรายการอาหารที่เลือกไว้ในตะกร้า
 //       this.selectedOrders = [];
 //       // แสดงข้อความหรือทำการ redirect หรือดำเนินการต่อตามที่คุณต้องการ
@@ -189,74 +194,71 @@ export class ListMenuComponent implements OnInit {
 // }
 
 
-confirmOrder(selectedTable: any): void {
-  // คำนวณราคารวมของรายการอาหารที่เลือก
-  const totalPrice = this.getTotalPrice();
+  // // สร้างเลขใบเสร็จ
+  // generateReceiptNumber(): string {
+  //   // ตัวอย่างการสร้างเลขใบเสร็จ อาจจะใช้ UUID หรือวิธีการอื่น ๆ ที่เหมาะสมกับโปรเจ็กต์ของคุณ
+  //   return uuidv4(); // สร้าง UUID เป็นเลขใบเสร็จ
+  // }
 
-  // เพิ่มสถานะ "pending" และ "totalPrice" ในรายการอาหารที่เลือก
-  this.selectedOrders.forEach((order: any) => {
-    order.status = 'pending';
-    order.totalPrice = totalPrice;
-    order.order = { id: order.id }; // เพิ่ม id ของรายการอาหารลงใน order
-  });
 
-  // เพิ่มข้อมูลเกี่ยวกับโต๊ะที่ผู้ใช้เลือกเข้าไปในรายการอาหารที่เลือก (หากมีการเลือกโต๊ะ)
-  if (selectedTable) {
+  confirmOrder(selectedTable: any): void {
+    // คำนวณราคารวมของรายการอาหารที่เลือก
+    const totalPrice = this.getTotalPrice();
+  
+    // เพิ่มสถานะ "pending" และ "totalPrice" ในรายการอาหารที่เลือก
     this.selectedOrders.forEach((order: any) => {
-      order.table = selectedTable;
+      order.status = 'pending';
+      order.totalPrice = totalPrice;
+      order.order = { id: order.id }; // เพิ่ม id ของรายการอาหารลงใน order
+      order.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จและเก็บไว้ในข้อมูลของรายการอาหาร
     });
-  }
-
-  // ส่งรายการอาหารที่เลือกไปยัง API เพื่อบันทึกลงในฐานข้อมูล
-  this.orderService.addOrderItems(this.selectedOrders).subscribe(
-    (response) => {
-      // หากการสั่งซื้อสำเร็จ
-      console.log('Order placed successfully:', response);
-      // แสดง popup ใบเสร็จ
-      this.openReceiptDialog({
-        transactionId: response.transactionId, // รหัสธุรกรรม
-        tableNumber: selectedTable.tableNumber, // เลขโต๊ะ
-        dateTime: new Date(), // วันเวลา
-        selectedOrders: this.selectedOrders, // รายการอาหารที่เลือก
-        totalPrice: totalPrice // ราคารวม
+  
+    // เพิ่มข้อมูลเกี่ยวกับโต๊ะที่ผู้ใช้เลือกเข้าไปในรายการอาหารที่เลือก (หากมีการเลือกโต๊ะ)
+    if (selectedTable) {
+      this.selectedOrders.forEach((order: any) => {
+        order.table = selectedTable;
       });
-      // ล้างรายการอาหารที่เลือกไว้ในตะกร้า
-      this.selectedOrders = [];
-      // แสดงข้อความหรือทำการ redirect หรือดำเนินการต่อตามที่คุณต้องการ
-
-      // เมื่อบันทึกข้อมูลลงในฐานข้อมูลเสร็จสิ้น คุณสามารถทำการรีเฟรชหน้าเพื่อให้ข้อมูลใหม่โดยไม่ต้องรีโหลดหน้า
-      this.refreshPage();
-    },
-    (error) => {
-      // หากเกิดข้อผิดพลาดในการสั่งซื้อ
-      console.error('Error placing order:', error);
-      // ดำเนินการจัดการข้อผิดพลาดตามที่คุณต้องการ เช่น แสดงข้อความผิดพลาด ลองสั่งซื้ออีกครั้ง ฯลฯ
     }
-  );
-}
+  
+    // ส่งรายการอาหารที่เลือกไปยัง API เพื่อบันทึกลงในฐานข้อมูล
+    this.orderService.addOrderItems(this.selectedOrders).subscribe(
+      (response) => {
+        // หากการสั่งซื้อสำเร็จ
+        console.log('Order placed successfully:', response);
+  
+        // แสดง popup ใบเสร็จ
+        this.openReceiptDialog({
+          transactionId: response.transactionId, // รหัสธุรกรรม
+          tableNumber: selectedTable.tableNumber, // เลขโต๊ะ
+          dateTime: new Date(), // วันเวลา
+          selectedOrders: this.selectedOrders, // รายการอาหารที่เลือก
+          totalPrice: totalPrice, // ราคารวม
+        });
+  
+        // ล้างรายการอาหารที่เลือกไว้ในตะกร้า
+        this.selectedOrders = [];
+        // แสดงข้อความหรือทำการ redirect หรือดำเนินการต่อตามที่คุณต้องการ
+      },
+      (error) => {
+        // หากเกิดข้อผิดพลาดในการสั่งซื้อ
+        console.error('Error placing order:', error);
+        // ดำเนินการจัดการข้อผิดพลาดตามที่คุณต้องการ เช่น แสดงข้อความผิดพลาด ลองสั่งซื้ออีกครั้ง ฯลฯ
+      }
+    );
+  }
+  
+
+  generateReceiptNumber(): string {
+    const randomNumber = Math.floor(Math.random() * 10000);
+    return 'ID' + randomNumber;
+  }
+  
 
 refreshPage1(): void {
   // รีเฟรชหน้าเพื่อโหลดข้อมูลใหม่
   window.location.reload();
 }
 
-
-
-
-//ใช้ได้ๆตัวหลัก
-// // เปิด popup ใบเสร็จ
-// openReceiptDialog(data: any): void {
-//   const dialogRef = this.dialog.open(ReceiptComponent, {
-//     width: '500px',
-//     data: data // ส่งข้อมูลที่จะแสดงใน popup ใบเสร็จ
-//   });
-
-//   // เมื่อปิด popup ใบเสร็จ
-//   dialogRef.afterClosed().subscribe(result => {
-//     console.log('The receipt dialog was closed');
-//     // คำสั่งหลังจากปิด popup ใบเสร็จ (ถ้ามี)
-//   });
-// }
 
 
 openReceiptDialog(data: any): void {
@@ -280,51 +282,6 @@ refreshPage(): void {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-// openReceiptDialog(data: any): void {
-//   if (data && data.transactionId) {
-//     const dialogRef = this.dialog.open(ReceiptComponent, {
-//       width: '500px',
-//       data: data // ส่งข้อมูลที่จะแสดงใน popup ใบเสร็จ
-//     });
-
-//     // เมื่อปิด popup ใบเสร็จ
-//     dialogRef.afterClosed().subscribe(result => {
-//       console.log('The receipt dialog was closed');
-//       // คำสั่งหลังจากปิด popup ใบเสร็จ (ถ้ามี)
-//     });
-//   } else {
-//     console.error('Transaction ID is missing or undefined');
-//   }
-// }
-
-
-// //เลือกได้ทั้งโต๊ะหรือไม่เลือกก็ได้
-// openTableSelectionDialog(): void {
-//   const dialogRef = this.dialog.open(TableSelectionDialogComponent, {
-//     width: '900px',
-//     height: '500px',
-//     data: {} // ส่งข้อมูลเพิ่มเติมได้ตามต้องการ
-//   });
-
-//   dialogRef.afterClosed().subscribe(selectedTable => {
-//     if (selectedTable) {
-//       // ทำการยืนยันออเดอร์เมื่อผู้ใช้เลือกโต๊ะและกดตกลง
-//       this.confirmOrder(selectedTable);
-//     } else {
-//       dialogRef.close();
-//       }
-//   });
-// }
 
 //เลือกได้ทั้งโต๊ะหรือไม่เลือกก็ได้
 openTableSelectionDialog(): void {

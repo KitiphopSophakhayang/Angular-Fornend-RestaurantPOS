@@ -74,7 +74,7 @@
 
     <div *ngIf="addOrders"  class="grid grid-rows-[2fr_6fr_2fr]  bg-white h-screen sticky top-0">
       <div class="py-16 px-5 border responsive-text">
-          ออเดอร์
+          ออเดอร์ {{ customReceiptNumber }}
       </div>
       <div class="flex flex-col overflow-auto  responsive-text">
         <div *ngFor="let selectedOrder of selectedOrders; let i = index" class="flex justify-between items-center border px-2">

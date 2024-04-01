@@ -64,7 +64,7 @@
 
 
 
-<!-- 
+
     <div class="grid grid-cols-[7fr_5fr] ">  
 
         <div class="bg-[rgba(245,245,245,255)] ">
@@ -126,13 +126,13 @@
                 </div>
           </div>
         </div>
-      </div>   -->
+      </div>  
       
 
   
-
+<!-- 
       <div class="grid grid-cols-[7fr_5fr]">
-        <!-- ส่วนเมนูออเดอร์ -->
+        
         <div class="bg-[rgba(245,245,245,255)]">
           <div class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
             <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl">
@@ -151,7 +151,7 @@
               </div>
             </div>
           </div>
-          <!-- เพิ่มการเลือก transactionId -->
+          
           <div class="grid grid-cols-3 gap-3 mx-3 mt-3 text-gray-500 responsive-text">
             <div *ngFor="let transactionId of uniqueTransactionIds()">
               <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" (click)="onSelectTransaction(transactionId)">
@@ -159,17 +159,15 @@
               </button>
             </div>
           </div>
-          <!-- แสดงรายการออเดอร์ที่มี transactionId เดียวกัน -->
+       
           <div class="p-6 responsive-text">
-            <!-- วนลูปเพื่อแสดงรายการออเดอร์ที่มี transaction_id ที่ซ้ำกัน -->
-            <!-- แสดงรายการออเดอร์ที่มี transactionId เดียวกัน -->
-         <!-- แสดงรายการออเดอร์ที่มี transactionId เดียวกัน -->
+      
           <div class="p-6 responsive-text">
-            <!-- วนลูปเพื่อแสดงรายการออเดอร์ที่มี transaction_id ที่ซ้ำกัน -->
+         
             <ng-container *ngFor="let transactionId of uniqueTransactionIds()">
               <div class="pb-2">
-                <p class="text-lg font-semibold mb-2">Transaction ID: {{ transactionId }}</p> <!-- แสดง transaction_id -->
-                <!-- ใช้ pipe เพื่อกรองรายการออเดอร์ตาม transaction_id -->
+                <p class="text-lg font-semibold mb-2">Transaction ID: {{ transactionId }}</p> 
+             
                 <div *ngFor="let order of ordersFromReceipt | filterOrdersByTransactionId: transactionId">
                   <div class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500">
                     <div class="flex items-center mb-2">
@@ -178,7 +176,7 @@
                     </div>
                     <div class="flex items-center">
                       <p class="">Table: </p>
-                      <p>#{{ order.table}}</p> <!-- แสดงเลขโต๊ะที่เกี่ยวข้องกับรายการออเดอร์ -->
+                      <p>#{{ order.table}}</p> 
                     </div>
                   </div>
                 </div>
@@ -189,7 +187,7 @@
           </div>
           
         </div>
-        <!-- ส่วนแสดงข้อความ "ยังไม่มีรายการออเดอร์" -->
+
         <div>
           <div class="grid grid-row-4 bg-white h-screen sticky top-0">
             <div class="flex px-4 pt-8 text-[rgb(129,125,125)] responsive-text">
@@ -202,6 +200,6 @@
           </div>
         </div>
       </div>
-      
+       -->
       
     
