@@ -1,45 +1,46 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import {
   option,
   backgroundColor,
   borderColor,
 } from '../constants/chart.option';
+import { OrderService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-bar',
   templateUrl: './bar.component.html',
   // styleUrls: ['./bar.component.css']
 })
-export class BarComponent implements AfterViewInit {
+export class BarComponent implements OnInit{
   @ViewChild('myChartBar') myChart: any;
   chart: any;
+  label: string[] = []
+  data: number[] = []
 
-  ngAfterViewInit(): void {
-    this.createChart();
+  constructor(private service: OrderService) {
+    service.getTotalPriceByWeekAndGetDayName().subscribe(res => console.log(res))
   }
-
+  
+  ngOnInit(): void {
+    this.service.getTotalPriceByDateInOneWeek().subscribe(res =>  {      
+      this.label = Object.keys(res) 
+      this.data = Object.values(res)
+      this.label = this.label.map(date => date.split(' ')[0]);
+      this.createChart();
+    });
+  }
+  
   createChart() {
     const ctx = this.myChart.nativeElement.getContext('2d');
-    let label = [
-      '2022-05-10',
-      '2022-05-11',
-      '2022-05-12',
-      '2022-05-13',
-      '2022-05-14',
-      '2022-05-15',
-      '2022-05-16',
-      '2022-05-17',
-    ];
-
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: label,
+        labels: this.label,
         datasets: [
           {
-            label: 'จำนวนทั้งหมดออเดอร์ / วัน',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            label: 'จำนวนยอดเงินรวมย้อนหลัง 7 วัน',
+            data: this.data,
             backgroundColor: backgroundColor,
             borderColor: borderColor,
             borderWidth: 1,
