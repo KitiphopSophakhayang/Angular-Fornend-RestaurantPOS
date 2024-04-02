@@ -1,0 +1,9 @@
+<button class="outline-pink-500 text-2xl" style="border-bottom: 1px solid">
+  Top 5 เมนูแนะนำ
+</button>
+
+<div class="mt-6 text-2xl">
+  <ul *ngFor="let item of listTopMenu; let i = index">
+    <li>{{ i + 1 }}. {{ item.menuName }} : {{ item.totalOrderedQuantity }}</li>
+  </ul>
+</div>
