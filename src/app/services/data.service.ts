@@ -58,21 +58,34 @@ export class OrderService {
   }
 
 
-  // generateReceiptNumber(): string {
-  //   return uuidv4(); // สร้าง UUID เป็นเลขใบเสร็จ
+  // // generateReceiptNumber(): string {
+  // //   return uuidv4(); // สร้าง UUID เป็นเลขใบเสร็จ
+  // // }
+
+  // addOrderItemsWithReceiptNumber(orderItems: OrderItem[]): Observable<any> {
+  //   // สร้างเลขใบเสร็จสำหรับทุกรายการ
+  //   // orderItems.forEach(orderItem => {
+  //   //   orderItem.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จ
+  //   // });
+  
+  //   // ส่งข้อมูลรายการสั่งซื้อพร้อมเลขใบเสร็จไปยัง API หรือเซิร์ฟเวอร์เพื่อเก็บในฐานข้อมูล
+  //   return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
   // }
+  
+  generateReceiptNumber(): string {
+    // สร้างเลขใบเสร็จตามที่ต้องการ เช่น ใช้เลขที่เพิ่มขึ้นทีละหนึ่งตามลำดับ
+    return (Math.floor(Math.random() * 1000000) + 1).toString(); 
+  }
 
   addOrderItemsWithReceiptNumber(orderItems: OrderItem[]): Observable<any> {
-    // สร้างเลขใบเสร็จสำหรับทุกรายการ
-    // orderItems.forEach(orderItem => {
-    //   orderItem.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จ
-    // });
-  
+    // สร้างหรือเพิ่มเลขใบเสร็จในข้อมูลรายการสั่งซื้อทุกรายการ
+    orderItems.forEach(orderItem => {
+      orderItem.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จ
+    });
+
     // ส่งข้อมูลรายการสั่งซื้อพร้อมเลขใบเสร็จไปยัง API หรือเซิร์ฟเวอร์เพื่อเก็บในฐานข้อมูล
     return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
   }
-  
-  
   
 
   deleteOrder(id: number): Observable<any> {
