@@ -5,7 +5,7 @@ import {
   backgroundColor,
   borderColor,
 } from '../constants/chart.option';
-import { OrderService } from 'src/app/services/data.service';
+import { ReportService } from 'src/app/services/report.service';
 
 @Component({
   selector: 'app-bar',
@@ -15,15 +15,17 @@ import { OrderService } from 'src/app/services/data.service';
 export class BarComponent implements OnInit{
   @ViewChild('myChartBar') myChart: any;
   chart: any;
-  label: string[] = []
-  data: number[] = []
+  label: any[] = []
+  data: any[] = []
 
-  constructor(private service: OrderService) {
+  constructor(private service: ReportService) {
     service.getTotalPriceByWeekAndGetDayName().subscribe(res => console.log(res))
   }
   
   ngOnInit(): void {
     this.service.getTotalPriceByDateInOneWeek().subscribe(res =>  {      
+      console.log(res);
+      
       this.label = Object.keys(res) 
       this.data = Object.values(res)
       this.label = this.label.map(date => date.split(' ')[0]);

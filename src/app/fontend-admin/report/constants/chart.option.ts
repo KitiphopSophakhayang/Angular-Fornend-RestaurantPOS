@@ -13,14 +13,14 @@ export const option = {
     x: {
       ticks: {
         font: {
-          size: 20,
+          size: 16,
         },
       },
     },
     y: {
       ticks: {
         font: {
-          size: 20,
+          size: 16,
         },
       },
     },

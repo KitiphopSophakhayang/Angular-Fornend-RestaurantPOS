@@ -21,10 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableSelectionDialogComponent } from './table-selection-dialog/table-selection-dialog.component';
 import { ReceiptComponent } from './receipt/receipt.component';
 import { FilterOrdersByTransactionIdPipe } from './filter-orders-by-transaction-id.pipe';
-import { LineComponent } from './fontend-admin/report/line/line.component';
-import { PieComponent } from './fontend-admin/report/pie/pie.component';
 import { CardComponent } from './fontend-admin/report/card/card.component';
 import { BarComponent } from './fontend-admin/report/bar/bar.component';
+import { TopMenuComponent } from './fontend-admin/report/top-menu/top-menu.component';
 
 export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
 
@@ -43,10 +42,9 @@ export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
     TableSelectionDialogComponent,
     ReceiptComponent,
     FilterOrdersByTransactionIdPipe,
-    LineComponent,
-    PieComponent,
     CardComponent,
     BarComponent,
+    TopMenuComponent,
   ],
   imports: [
     BrowserModule,

@@ -100,28 +100,5 @@ export class OrderService {
     );
   }
 
-  getTotalPriceByWeekAndGetDayName(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/orderItems/getTotalPriceByWeekAndGetDayName`);
-  }
-
-  getAllToTalPrice(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/orderItems/getAllTotalPrice`);
-  }
-
-  getAllOrder(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/orderItems/getAllOrder`);
-  }
-
-  getAllTable(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/tables/allTable`);
-  }
-
-  getAllMenu(): Observable<number> {
-    return this.http.get<number>(`${this.baseUrl}/getAllMenu`);
-  }
-
-  getTotalPriceByDateInOneWeek(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/orderItems/getTotalPriceByDateInOneWeek`);
-  }
 
 }
