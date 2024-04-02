@@ -63,6 +63,8 @@ export class OrderService {
   
   //   // ส่งข้อมูลรายการสั่งซื้อพร้อมเลขใบเสร็จไปยัง API หรือเซิร์ฟเวอร์เพื่อเก็บในฐานข้อมูล
   //   return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
+  // generateReceiptNumber(): string {
+  //   return uuidv4(); // สร้าง UUID เป็นเลขใบเสร็จ
   // }
   
   generateReceiptNumber(): string {
@@ -71,11 +73,11 @@ export class OrderService {
   }
 
   addOrderItemsWithReceiptNumber(orderItems: OrderItem[]): Observable<any> {
-    // สร้างเลขใบเสร็จสำหรับทุกรายการ
-    // orderItems.forEach(orderItem => {
-    //   orderItem.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จ
-    // });
-  
+    // สร้างหรือเพิ่มเลขใบเสร็จในข้อมูลรายการสั่งซื้อทุกรายการ
+    orderItems.forEach(orderItem => {
+      orderItem.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จ
+    });
+
     // ส่งข้อมูลรายการสั่งซื้อพร้อมเลขใบเสร็จไปยัง API หรือเซิร์ฟเวอร์เพื่อเก็บในฐานข้อมูล
     return this.http.post(`${this.baseUrl}/orderItems`, orderItems);
   }
