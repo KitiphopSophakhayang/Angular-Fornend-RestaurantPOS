@@ -1,4 +1,4 @@
-    <!-- <div class="grid grid-cols-[7fr_5fr] ">  
+<div class="grid grid-cols-[7fr_5fr]">
 
         <div class="bg-[rgba(245,245,245,255)] ">
      
@@ -72,17 +72,17 @@
             <div class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
                 <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl">
                     <div>
-                      ออเดอร์ล่าสุด
-                    </div>
-                  </div>
-                  <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl">
-                    <div >
-                      เสร็จแล้ว
+                      <p class="mx-auto">ออเดอร์ล่าสุด</p>
                     </div>
                   </div>
                   <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl">
                     <div>
-                      ประวัติออเดอร์
+                      <p class="mx-auto">เสร็จแล้ว</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl">
+                    <div>
+                      <p class="mx-auto">ประวัติออเดอร์</p>
                     </div>
                   </div>
             </div>
@@ -140,66 +140,16 @@
                 <p class="mx-auto">ออเดอร์ล่าสุด</p>
               </div>
             </div>
-            <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl">
-              <div>
-                <p class="mx-auto">เสร็จแล้ว</p>
+            <div class="flex flex-col overflow-auto  responsive-text">
+              <div  class="flex justify-between items-center border px-2">
+                <div class="justify-between mt-4">
+                  <!-- <p class="font-semibold">{{ i + 1 }}. <span class="font-normal">{{ selectedOrder.name }}</span> <span class="font-normal"></span> </p>
+                  <p class="font-semibold pl-5">{{ selectedOrder.price }} ฿</p> -->
+                </div>  
               </div>
             </div>
-            <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl">
-              <div>
-                <p class="mx-auto">ประวัติออเดอร์</p>
-              </div>
-            </div>
-          </div>
-          
-          <div class="grid grid-cols-3 gap-3 mx-3 mt-3 text-gray-500 responsive-text">
-            <div *ngFor="let transactionId of uniqueTransactionIds()">
-              <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" (click)="onSelectTransaction(transactionId)">
-                {{ transactionId }}
-              </button>
-            </div>
-          </div>
-       
-          <div class="p-6 responsive-text">
-      
-          <div class="p-6 responsive-text">
-         
-            <ng-container *ngFor="let transactionId of uniqueTransactionIds()">
-              <div class="pb-2">
-                <p class="text-lg font-semibold mb-2">Transaction ID: {{ transactionId }}</p> 
-             
-                <div *ngFor="let order of ordersFromReceipt | filterOrdersByTransactionId: transactionId">
-                  <div class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500">
-                    <div class="flex items-center mb-2">
-                      <p class="mx">Order ID: </p>
-                      <p>#{{ order.orderItemId }}</p>
-                    </div>
-                    <div class="flex items-center">
-                      <p class="">Table: </p>
-                      <p>#{{ order.table}}</p> 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-container>
-          </div>
+        </form>
+    </div>
+  </div>
+</div>
 
-          </div>
-          
-        </div>
-
-        <div>
-          <div class="grid grid-row-4 bg-white h-screen sticky top-0">
-            <div class="flex px-4 pt-8 text-[rgb(129,125,125)] responsive-text">
-              <p>ยังไม่มีรายการออเดอร์</p>
-            </div>
-            <div class="py-20">
-              <img src="assets/image/cooking.png" class="m-auto sm:w-4/5 md:w-w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-4/5">
-              <p class="text-center text-[rgb(129,125,125)] responsive-text">รายละเอียดออเดอร์</p>
-            </div>
-          </div>
-        </div>
-      </div>
-       -->
-      
-    
