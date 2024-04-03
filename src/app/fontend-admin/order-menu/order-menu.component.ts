@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { OrderService, OrderItem } from 'src/app/services/data.service';
 
 @Component({
@@ -9,38 +9,56 @@ import { OrderService, OrderItem } from 'src/app/services/data.service';
 })
 export class OrderMenuComponent implements OnInit {
   ordersFromReceipt: any[] = [];
-  orderDisplayStatus: boolean = false
-  temp!: any[]
+  orderDisplayStatus: boolean = false;
+  temp!: any[];
+  orderForm!: FormGroup;
 
-  constructor(private orderService: OrderService, private fb: FormBuilder) {}
+  constructor(private orderService: OrderService, private fb: FormBuilder) {
+    this.onInintForm();
+  }
 
   ngOnInit(): void {
-    // const transactionId = '0896cb94-204b-45f0-9db6-6f9011cb3647';
-    // this.getOrderItemsByTransactionId(transactionId);
-    // this.orderService.getAllOrderItems().subscribe(res => console.log(res))
-    this.orderService.getOrderByStatus("pending").subscribe((res: any) => {
-        console.log(res);
-        this.ordersFromReceipt = res
-        this.getOrderByTransection(res)
-    })
+    this.orderService.getOrderByStatus('pending').subscribe((res: any[]) => {
+      console.log(res);
+      this.ordersFromReceipt = res;
+    });
+  }
+
+  onInintForm() {
+    this.orderForm = this.fb.group({
+      id: new FormControl(null),
+      name: new FormControl(null),
+      foodType: new FormControl(null),
+      price: new FormControl(null),
+      tableId: new FormControl(null),
+      status: new FormControl(null),
+      orderId: new FormControl(null),
+      quantity: new FormControl(null),
+    });
   }
 
   getOrderItemsByTransactionId(transactionId: string): void {
     this.orderService
       .getOrderItemsByTransactionId(transactionId)
       .subscribe((res: any) => {
-        console.log(res[0]);
+        console.log(res);
       });
   }
 
-  getOrderByTransection(data: any) {
-    data.filter((val: any) => {
-        val.transactionId
-    })
+  onOpenOrder() {
+    this.orderDisplayStatus = true;
   }
 
-  onOpenOrder() {
-    console.log("test");
-    this.orderDisplayStatus = true;
+  onTest(order: OrderItem) {
+    this.orderForm.patchValue({
+      id: order.order?.id,
+      name: order.order?.name,
+      foodType: order.order?.foodType,
+      price: order.order?.foodType,
+      tableId: order.table?.tableId,
+      status: order.status,
+      orderId: order.orderItemId,
+      quantity: order.quantity,
+    });
   }
 }

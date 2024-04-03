@@ -18,7 +18,7 @@ export class OrderItem {
   order: Order | undefined;
   orderDate: Date | undefined;
   totalPrice: number | undefined;
-  table: DiningTable | undefined;
+  table: any | undefined;
   status: string | undefined;
   tableNumber: string | undefined;
   transaction_id: any;

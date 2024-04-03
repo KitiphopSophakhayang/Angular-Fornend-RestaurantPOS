@@ -1,7 +1,6 @@
 <div class="grid grid-cols-[7fr_5fr]">
-
-    <!-- header -->
-    <div class="bg-[rgba(245,245,245,255)]">
+  <!-- header -->
+  <div class="bg-[rgba(245,245,245,255)]">
     <div
       class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text"
     >
@@ -33,6 +32,7 @@
       <div class="pb-2" *ngFor="let order of ordersFromReceipt">
         <div
           class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500"
+          (click)="onTest(order)"
         >
           <div class="flex items-center mb-2">
             <p class="mx">ออเดอร์ :</p>
@@ -67,20 +67,31 @@
 
   <div *ngIf="orderDisplayStatus">
     <div class="grid grid-row-4 bg-white h-screen sticky top-0">
-        <form>
-            <div class="py-16 px-5 border responsive-text">
-                ออเดอร์ 
-            </div>
-            <div class="flex flex-col overflow-auto  responsive-text">
-              <div  class="flex justify-between items-center border px-2">
-                <div class="justify-between mt-4">
-                  <!-- <p class="font-semibold">{{ i + 1 }}. <span class="font-normal">{{ selectedOrder.name }}</span> <span class="font-normal"></span> </p>
-                  <p class="font-semibold pl-5">{{ selectedOrder.price }} ฿</p> -->
-                </div>  
+      <form [formGroup]="orderForm">
+        <div class="pt-16 mb-6 px-5 border responsive-text">
+          <h1>หมายเลขออเดอร์ที่ : {{ orderForm.get("orderId")?.value }}</h1>
+        </div>
+        <div class="flex flex-col responsive-text">
+          <div class="flex justify-between items-center border px-2">
+            <div class="justify-between mt-4">
+              <!-- {{orderForm.value | json}} -->
+              <h1>โต๊ะที่ : {{ orderForm.controls["tableId"].value }}</h1>
+              <h1>เมนู : {{ orderForm.controls["name"].value }}</h1>
+              <h1>จำนวน : {{ orderForm.controls["quantity"].value }}</h1>
+              <!-- <h1>{{orderForm.controls['foodType'].value}}</h1> -->
+              <!-- <h1>{{orderForm.controls['price'].value}}</h1> -->
+              <h1>{{ orderForm.controls["status"].value }}</h1>
+              <div class="grid">
+                <button
+                  class="w-full p-5 mr-1 mt-4 hover:bg-yellow-400 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white responsive-text"
+                >
+                  ยืนยันออเดอร์
+                </button>
               </div>
             </div>
-        </form>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
-
