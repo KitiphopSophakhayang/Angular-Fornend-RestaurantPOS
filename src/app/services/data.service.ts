@@ -124,4 +124,8 @@ export class OrderService {
     let params = new HttpParams().set("status", status)
     return this.http.get<any>(`${this.baseUrl}/orderItems/getOrderStatus`, { params });
   }
+
+  updateOrderStatus(orderData: any) {
+    return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderStatus`, orderData)
+  }
 }

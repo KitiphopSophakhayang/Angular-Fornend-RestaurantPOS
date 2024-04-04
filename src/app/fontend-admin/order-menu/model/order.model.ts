@@ -22,3 +22,8 @@ export interface Table {
   tableId: number;
   tableNumber: number;
 }
+
+export interface UpdOrderStatusBean {
+  status: string 
+  orderItemId: number;    
+}

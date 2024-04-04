@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { OrderService, OrderItem } from 'src/app/services/data.service';
+import { UpdOrderStatusBean } from './model/order.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-order-menu',
@@ -18,8 +20,9 @@ export class OrderMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.orderService.getOrderByStatus('pending').subscribe((res: any[]) => {
-      console.log(res);
+    const payload = 'pending';
+    this.orderService.getOrderByStatus(payload).subscribe((res: any[]) => {
+      // console.log(res);
       this.ordersFromReceipt = res;
     });
   }
@@ -59,6 +62,25 @@ export class OrderMenuComponent implements OnInit {
       status: order.status,
       orderId: order.orderItemId,
       quantity: order.quantity,
+    });
+  }
+
+  onUpdateStatus() {
+    const payload = {
+      orderItemId: this.orderForm.controls['orderId'].value,
+      status: 'success',
+    } as UpdOrderStatusBean;
+
+    this.orderService.updateOrderStatus(payload).subscribe((res: Boolean) => {
+      this.orderDisplayStatus = false;
+      this.ngOnInit();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'update order success.',
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   }
 }
