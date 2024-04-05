@@ -25,6 +25,7 @@ import { CardComponent } from './fontend-admin/report/card/card.component';
 import { BarComponent } from './fontend-admin/report/bar/bar.component';
 import { TopMenuComponent } from './fontend-admin/report/top-menu/top-menu.component';
 import { OrderMenuSuccessComponent } from './fontend-admin/order-menu-success/order-menu-success.component';
+import { StatusPipePipe } from './pipe/status-pipe.pipe';
 
 export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
 
@@ -47,6 +48,7 @@ export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
     BarComponent,
     TopMenuComponent,
     OrderMenuSuccessComponent,
+    StatusPipePipe,
   ],
   imports: [
     BrowserModule,

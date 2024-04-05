@@ -2,7 +2,7 @@
   <!-- header -->
   <div class="bg-[rgba(245,245,245,255)]">
     <div
-      class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text"
+      class="grid grid-cols-2 gap-3 mx-3 mt-24 text-gray-500 responsive-text"
     >
       <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl"
@@ -18,13 +18,13 @@
           <p class="mx-auto" >เสร็จแล้ว</p>
         </div>
       </div>
-      <div
+      <!-- <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl"
       >
         <div style="cursor: pointer;">
           <p class="mx-auto">ประวัติออเดอร์</p>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <!-- Order list -->
@@ -78,10 +78,12 @@
               <h1>โต๊ะที่ : {{ orderForm.controls["tableId"].value }}</h1>
               <h1>เมนู : {{ orderForm.controls["name"].value }}</h1>
               <h1>จำนวน : {{ orderForm.controls["quantity"].value }}</h1>
-              <!-- <h1>{{orderForm.controls['foodType'].value}}</h1> -->
+              <h1>ประเภท : {{orderForm.controls['foodType'].value}}</h1>
               <!-- <h1>{{orderForm.controls['price'].value}}</h1> -->
-              <h1>{{ orderForm.controls["status"].value }}</h1>
-              <div class="grid">
+              <h1>สถานะ : {{ orderForm.controls["status"].value | statusPipe }}</h1>
+            </div>
+          </div>
+              <div class="flex flex-row">
                 <button
                 (click)="onUpdateStatus()"
                   class="w-full p-5 mr-1 mt-4 hover:bg-yellow-400 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white responsive-text"
@@ -89,8 +91,6 @@
                   ยืนยันออเดอร์
                 </button>
               </div>
-            </div>
-          </div>
         </div>
       </form>
     </div>

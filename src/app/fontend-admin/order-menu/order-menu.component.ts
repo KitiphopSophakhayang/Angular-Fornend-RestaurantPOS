@@ -12,7 +12,6 @@ import Swal from 'sweetalert2';
 export class OrderMenuComponent implements OnInit {
   ordersFromReceipt: any[] = [];
   orderDisplayStatus: boolean = false;
-  temp!: any[];
   orderForm!: FormGroup;
 
   constructor(private orderService: OrderService, private fb: FormBuilder) {
@@ -40,13 +39,13 @@ export class OrderMenuComponent implements OnInit {
     });
   }
 
-  getOrderItemsByTransactionId(transactionId: string): void {
-    this.orderService
-      .getOrderItemsByTransactionId(transactionId)
-      .subscribe((res: any) => {
-        console.log(res);
-      });
-  }
+  // getOrderItemsByTransactionId(transactionId: string): void {
+  //   this.orderService
+  //     .getOrderItemsByTransactionId(transactionId)
+  //     .subscribe((res: any) => {
+  //       console.log(res);
+  //     });
+  // }
 
   onOpenOrder() {
     this.orderDisplayStatus = true;
@@ -71,7 +70,7 @@ export class OrderMenuComponent implements OnInit {
       status: 'success',
     } as UpdOrderStatusBean;
 
-    this.orderService.updateOrderStatus(payload).subscribe((res: Boolean) => {
+    this.orderService.updateOrderStatus(payload).subscribe((res: boolean) => {
       this.orderDisplayStatus = false;
       this.ngOnInit();
       Swal.fire({

@@ -24,7 +24,7 @@ export class BarComponent implements OnInit{
   
   ngOnInit(): void {
     this.service.getTotalPriceByDateInOneWeek().subscribe(res =>  {      
-      console.log(res);
+      // console.log(res);
       
       this.label = Object.keys(res) 
       this.data = Object.values(res)
