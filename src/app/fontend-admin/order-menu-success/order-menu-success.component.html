@@ -7,32 +7,36 @@
       <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl"
       >
-        <div [routerLink]="'/OrderMenu'" style="cursor: pointer;">
+        <div [routerLink]="'/OrderMenu'" style="cursor: pointer">
           <p class="mx-auto">ออเดอร์ล่าสุด</p>
         </div>
       </div>
       <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl"
       >
-        <div [routerLink]="'/success'" style="cursor: pointer;">
-          <p class="mx-auto" >เสร็จแล้ว</p>
+        <div [routerLink]="'/success'" style="cursor: pointer">
+          <p class="mx-auto">เสร็จแล้ว</p>
         </div>
       </div>
       <!-- <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl"
       >
-        <div style="cursor: pointer;">
+        <div style="cursor: pointer">
           <p class="mx-auto">ประวัติออเดอร์</p>
         </div>
       </div> -->
     </div>
 
     <!-- Order list -->
-    <div class="p-6 responsive-text" (click)="onOpenOrder()">
-      <div class="pb-2" *ngFor="let order of ordersFromReceipt">
+    <div class="p-6 responsive-text">
+      <div
+        class="pb-2"
+        *ngFor="let order of ordersFromReceipt"
+        (click)="onOpen()"
+      >
         <div
+          (click)="onOpenOrder(order)"
           class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500"
-          (click)="onTest(order)"
         >
           <div class="flex items-center mb-2">
             <p class="mx">ออเดอร์ :</p>
@@ -57,6 +61,7 @@
         <img
           src="assets/image/cooking.png"
           class="m-auto sm:w-4/5 md:w-w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-4/5"
+          alt="cooking"
         />
         <p class="text-center text-[rgb(129,125,125)] responsive-text">
           รายละเอียดออเดอร์
@@ -74,26 +79,18 @@
         <div class="flex flex-col responsive-text">
           <div class="flex justify-between items-center border px-2">
             <div class="justify-between mt-4">
-              <!-- {{orderForm.value | json}} -->
               <h1>โต๊ะที่ : {{ orderForm.controls["tableId"].value }}</h1>
               <h1>เมนู : {{ orderForm.controls["name"].value }}</h1>
               <h1>จำนวน : {{ orderForm.controls["quantity"].value }}</h1>
-              <h1>ประเภท : {{orderForm.controls['foodType'].value}}</h1>
+              <h1>ประเภท : {{ orderForm.controls["foodType"].value }}</h1>
               <!-- <h1>{{orderForm.controls['price'].value}}</h1> -->
-              <h1>สถานะ : {{ orderForm.controls["status"].value | statusPipe }}</h1>
+              <h1>
+                สถานะ : {{ orderForm.controls["status"].value | statusPipe }}
+              </h1>
             </div>
           </div>
-              <div class="flex flex-row">
-                <button
-                (click)="onUpdateStatus()"
-                  class="w-full p-5 mr-1 mt-4 hover:bg-yellow-400 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white responsive-text"
-                >
-                  ยืนยันออเดอร์
-                </button>
-              </div>
         </div>
       </form>
     </div>
   </div>
 </div>
-

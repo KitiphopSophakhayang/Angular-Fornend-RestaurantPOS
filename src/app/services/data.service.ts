@@ -18,7 +18,7 @@ export class OrderItem {
   order: Order | undefined;
   orderDate: Date | undefined;
   totalPrice: number | undefined;
-  table: DiningTable | undefined;
+  table: any | undefined;
   status: string | undefined;
   tableNumber: string | undefined;
   transaction_id: any;
@@ -123,5 +123,9 @@ export class OrderService {
   getOrderByStatus(status: string): Observable<any> {
     let params = new HttpParams().set("status", status)
     return this.http.get<any>(`${this.baseUrl}/orderItems/getOrderStatus`, { params });
+  }
+
+  updateOrderStatus(orderData: any) {
+    return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderStatus`, orderData)
   }
 }
