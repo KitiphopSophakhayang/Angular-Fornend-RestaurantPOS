@@ -49,6 +49,7 @@ export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
     TopMenuComponent,
     OrderMenuSuccessComponent,
     StatusPipePipe,
+
   ],
   imports: [
     BrowserModule,

@@ -69,47 +69,53 @@
   <div *ngIf="!CreateNewOrder && showEditForm" class="responsive-text">
       <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0">
         <h2 class="text-2xl font-bold m-auto text-gray-500 p-5">แก้ไขรายการอาหาร</h2>
-
-        <div class="p-5 flex items-center justify-center">
-          <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer">
-            <input type="file" id="fileInput" class="hidden" (change)="onFileSelected($event)">
-            <img src="assets/image/image_add.png" class=" hover:border-2 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44">
-          </label>
-        </div>
-        
-        <div class="px-16 mb-4" *ngIf="selectedOrder">
-          <p class="text-gray-500">ประเภทอาหาร</p>
-          <input [(ngModel)]="selectedOrder.foodType" required name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-        </div>
-        <div class="px-16 mb-4" *ngIf="selectedOrder">
-          <p class="text-gray-500">ชื่ออาหาร</p>
-          <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-        </div>
-        <div class="px-16 mb-4" *ngIf="selectedOrder">
-          <p class="text-gray-500">รายละเอียด</p>
-          <input [(ngModel)]="selectedOrder.imageName" class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2">
-        </div>
-        <div class="px-16 mt-4 mb-4" *ngIf="selectedOrder">
-          <p class="text-gray-500">ราคา</p>
-          <input type="number" [(ngModel)]="selectedOrder.price" name="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-        </div>
-        
-    
-        <div class="px-12">
-          <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
-              <button (click)="updateOrder()" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
-              <div class="flex items-center justify-center">
-                <p class="responsive-text">เสร็จสิ้น</p>
-              </div>
-            </button>
       
-            <button (click)="deleteOrder()" class="hover:border-2 w-full hover:bg-red-500 bg-[rgba(255,0,0,1)] rounded-3xl text-lg text-white sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
-              <div class="flex items-center justify-center">
-                <p class="responsive-text">ลบ</p>
-              </div>
-           </button>
+        <form class="space-y-4">
+          <div class="p-5 flex flex-col items-center justify-center">
+            <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer mb-4">
+              <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
+              <img src="assets/image/image_add.png" class="hover:border-2 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44">
+            </label>
+            <ul class="list-disc pl-5">
+              <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+            </ul>
+          </div>  
+          
+          <div class="px-16 mb-4" *ngIf="selectedOrder">
+            <p class="text-gray-500">ประเภทอาหาร</p>
+            <input [(ngModel)]="selectedOrder.foodType" required name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
           </div>
-        </div>
+          <div class="px-16 mb-4" *ngIf="selectedOrder">
+            <p class="text-gray-500">ชื่ออาหาร</p>
+            <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          </div>
+          <!-- <div class="px-16 mb-4" *ngIf="selectedOrder">
+            <p class="text-gray-500">รายละเอียด</p>
+            <input [(ngModel)]="selectedOrder.imageName" class="bg-[rgba(217,217,217,255)] w-full sm:h-20 md:h-20 lg:h-20 xl:h-24 2xl:h-32 border rounded-md p-2">
+          </div> -->
+          <div class="px-16 mt-4 mb-4" *ngIf="selectedOrder">
+            <p class="text-gray-500">ราคา</p>
+            <input type="number" [(ngModel)]="selectedOrder.price" name="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          </div>
+          
+      
+          <div class="px-12">
+            <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
+                <button (click)="updateOrder()" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
+                <div class="flex items-center justify-center">
+                  <p class="responsive-text">เสร็จสิ้น</p>
+                </div>
+              </button>
+        
+              <button (click)="deleteOrder()" class="hover:border-2 w-full hover:bg-red-500 bg-[rgba(255,0,0,1)] rounded-3xl text-lg text-white sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
+                <div class="flex items-center justify-center">
+                  <p class="responsive-text">ลบ</p>
+                </div>
+             </button>
+            </div>
+          </div>
+        </form>
+        
 
     </div>
 
@@ -119,6 +125,7 @@
     <div *ngIf="CreateNewOrder"  class="responsive-text">
       <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0" >
         <h2 class="text-2xl font-bold m-auto text-gray-500 p-5">เพิ่มรายการอาหาร</h2>
+        
         <form class="space-y-4" [formGroup]="testForm">
       
            <div class="p-5 flex flex-col items-center justify-center">
@@ -130,7 +137,7 @@
               <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
             </ul>
           </div>  
-        
+       
           <div class="px-16 mb-4">
             <p class="text-gray-500">ชื่ออาหาร</p>
             <input id="name" formControlName="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">

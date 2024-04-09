@@ -73,7 +73,8 @@ export class ListEditComponent implements OnInit {
         formData.append('file', this.selectedFile);
         // Call updateOrder service with selectedOrder id and formData
         this.orderService.updateOrder(this.selectedOrder.id, formData).subscribe(() => {
-          // Do something after updating order
+          // หลังจากที่อัปเดตคำสั่งเสร็จสิ้น เรียกใช้ฟังก์ชันสำหรับรีเฟรชหน้าเว็บ
+          this.refreshPage();
         });
       } else {
         console.error('Selected file is undefined.');
@@ -81,6 +82,11 @@ export class ListEditComponent implements OnInit {
     } else {
       console.error('Selected order or its id is undefined.');
     }
+  }
+  
+  // ฟังก์ชันสำหรับรีเฟรชหน้าเว็บ
+  refreshPage() {
+    window.location.reload();
   }
   
   
