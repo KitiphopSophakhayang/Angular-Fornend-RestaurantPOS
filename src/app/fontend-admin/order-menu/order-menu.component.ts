@@ -76,7 +76,7 @@ export class OrderMenuComponent implements OnInit {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'update order success.',
+        title: 'ทำเสร็จเรียบร้อย',
         showConfirmButton: false,
         timer: 1500,
       });

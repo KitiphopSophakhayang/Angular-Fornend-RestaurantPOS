@@ -2,22 +2,15 @@
   <!-- header -->
   <div class="bg-[rgba(245,245,245,255)]">
     <div
-      class="grid grid-cols-2 gap-3 mx-3 mt-24 text-gray-500 responsive-text"
-    >
+      class="grid grid-cols-2 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
       <div
-        class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl"
-      >
-        <div [routerLink]="'/OrderMenu'" style="cursor: pointer">
-          <p class="mx-auto">ออเดอร์ล่าสุด</p>
-        </div>
-      </div>
-      <div
-        class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl"
-      >
-        <div [routerLink]="'/success'" style="cursor: pointer">
-          <p class="mx-auto">เสร็จแล้ว</p>
-        </div>
-      </div>
+      class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl"[routerLink]="'/OrderMenu'" style="cursor: pointer;">
+        ออเดอร์ล่าสุด
+    </div>
+    <div
+      class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl " [routerLink]="'/success'" style="cursor: pointer;">
+        เสร็จแล้ว
+    </div>
       <!-- <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl"
       >
@@ -36,7 +29,7 @@
       >
         <div
           (click)="onOpenOrder(order)"
-          class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500"
+          class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-green-500"
         >
           <div class="flex items-center mb-2">
             <p class="mx">ออเดอร์ :</p>
@@ -55,7 +48,7 @@
   <div *ngIf="!orderDisplayStatus">
     <div class="grid grid-row-4 bg-white h-screen sticky top-0">
       <div class="flex px-4 pt-8 text-[rgb(129,125,125)] responsive-text">
-        <p>ยังไม่มีรายการออเดอร์</p>
+        <p>เลือกดูรายการที่เสร็จสิ้น</p>
       </div>
       <div class="py-20">
         <img
