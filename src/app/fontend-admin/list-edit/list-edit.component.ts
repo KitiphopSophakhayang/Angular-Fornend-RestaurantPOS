@@ -92,8 +92,10 @@ export class ListEditComponent implements OnInit {
   
   onSelectOrder(order: Order): void {
     this.selectedOrder = order;
-    this.showEditForm = true;
+    this.CreateNewOrder = false; // สั่งให้ฟอร์มสำหรับเพิ่มรายการอาหารถูกซ่อนเมื่อเลือกรายการที่ต้องการแก้ไข
+    this.showEditForm = true; // แสดงฟอร์มสำหรับแก้ไขรายการอาหาร
   }
+  
 
   onCreateNewOrder(): void {
     this.showEditForm = false;

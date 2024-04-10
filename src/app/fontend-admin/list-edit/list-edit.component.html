@@ -122,50 +122,70 @@
   </div>
 
 
-    <div *ngIf="CreateNewOrder"  class="responsive-text">
-      <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0" >
-        <h2 class="text-2xl font-bold m-auto text-gray-500 p-5">เพิ่มรายการอาหาร</h2>
-        
-        <form class="space-y-4" [formGroup]="testForm">
+  <div *ngIf="CreateNewOrder"  class="responsive-text">
+    <div class="grid grid-rows-[2fr_2fr_2fr_2fr_2fr] bg-white h-screen sticky top-0" >
+      <h2 class="text-2xl font-bold m-auto text-gray-500 p-5">เพิ่มรายการอาหาร</h2>
       
-           <div class="p-5 flex flex-col items-center justify-center">
-            <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer mb-4">
-              <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
-              <img src="assets/image/image_add.png" class="hover:border-2 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44">
-            </label>
-            <ul class="list-disc pl-5">
-              <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
-            </ul>
-          </div>  
-       
-          <div class="px-16 mb-4">
-            <p class="text-gray-500">ชื่ออาหาร</p>
-            <input id="name" formControlName="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+      <form class="space-y-4" [formGroup]="testForm">
+   
+         <div class="p-5 flex flex-col items-center justify-center">
+          <label for="fileInput" class="bg-[rgba(217,217,217,255)] cursor-pointer mb-4">
+            <input type="file" id="fileInput" style="display: none" (change)="onFileSelected($event)">
+            <img src="assets/image/image_add.png" class="hover:border-2 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-40 lg:h-40 xl:w-40 xl:h-40 2xl:w-44 2xl:h-44">
+          </label>
+          <ul class="list-disc pl-5">
+            <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+          </ul>
+        </div>  
+     
+        <div class="px-16 mb-4">
+          <p class="text-gray-500">ชื่ออาหาร</p>
+          <div class="relative">
+              <input id="name" formControlName="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
+              <div *ngIf="testForm.get('name')?.invalid && (testForm.get('name')?.touched || testForm.get('name')?.dirty)" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                  </svg>
+              </div>
           </div>
-          
-          <div class="px-16 mb-4">
-            <p class="text-gray-500">ประเภทอาหาร</p>
-            <input id="foodType" formControlName="foodType" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-          </div>
-          
-          <div class="px-16 mb-4">
-            <p class="text-gray-500">ราคา</p>
-            <input id="price" type="number" formControlName="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-          </div>
-        
-          <div class="px-12">
-            <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
-             
-              <button type="button" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24" (click)="createOrder()" [disabled]="!selectedFile">
-                <div class="flex items-center justify-center">
-                  <p class="responsive-text">เสร็จสิ้น</p>
-                </div>
-              </button>
-            </div>
-          </div>
-          
-        </form>
       </div>
-    </div>    
+      <div class="px-16 mb-4">
+          <p class="text-gray-500">ประเภทอาหาร</p>
+          <div class="relative">
+              <input id="foodType" formControlName="foodType" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
+              <div *ngIf="testForm.get('foodType')?.invalid && (testForm.get('foodType')?.touched || testForm.get('foodType')?.dirty)" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                  </svg>
+              </div>
+          </div>
+      </div>
+      <div class="px-16 mb-4">
+          <p class="text-gray-500">ราคา</p>
+          <div class="relative">
+              <input id="price" type="number" formControlName="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
+              <div *ngIf="testForm.get('price')?.invalid && (testForm.get('price')?.touched || testForm.get('price')?.dirty)" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <svg class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+                  </svg>
+              </div>
+          </div>
+      </div>
+      
+    
+        <div class="px-12">
+          <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
+            <button type="button" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24" (click)="createOrder()" [disabled]="!selectedFile">
+              <div class="flex items-center justify-center">
+                <p class="responsive-text">เสร็จสิ้น</p>
+              </div>
+            </button>
+          </div>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+     
 </div> 
 
