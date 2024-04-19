@@ -40,6 +40,7 @@ export class ListMenuComponent implements OnInit {
     this.loadFoodTypes();
   }
 
+  //ประเภทอาหารที่เอาไว้ออกมาแสดง
   loadFoodTypes(): void {
     this.orderService.getFoodTypes().subscribe(
       (data: any[]) => {
