@@ -19,12 +19,25 @@ export class ListEditComponent implements OnInit {
   files: any[] = [];
   
   selectedFiles: File[] = [];
+  foodTypes: any[] = [];
 
   constructor(private orderService: OrderService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.onInit();
     this.getFiles();
+    this.loadFoodTypes();
+  }
+
+  loadFoodTypes(): void {
+    this.orderService.getFoodTypes().subscribe(
+      (data: any[]) => {
+        this.foodTypes = data;
+      },
+      (error: any) => {
+        console.error('Error fetching food types:', error);
+      }
+    );
   }
 
   getFiles(): void {
@@ -61,6 +74,7 @@ export class ListEditComponent implements OnInit {
       console.error('Cannot delete. Selected order is undefined or does not have an id.');
     }
   }
+  
 
   updateOrder(): void {
     if (this.selectedOrder && this.selectedOrder.id !== undefined) {
@@ -83,6 +97,7 @@ export class ListEditComponent implements OnInit {
       console.error('Selected order or its id is undefined.');
     }
   }
+  
   
   // ฟังก์ชันสำหรับรีเฟรชหน้าเว็บ
   refreshPage() {
@@ -116,12 +131,60 @@ export class ListEditComponent implements OnInit {
   }
 
   
+  // createOrder(): void {
+  //   if (!this.selectedFile) {
+  //     console.error('No image selected.');
+  //     return;
+  //   }
+
+  //   const order: Order = {
+  //     id: undefined, // หรือค่าที่เหมาะสมตามการใช้งาน
+  //     name: this.testForm.get('name')?.value,
+  //     foodType: this.testForm.get('foodType')?.value,
+  //     price: this.testForm.get('price')?.value,
+  //     imageName: this.selectedFile.name,
+  //     imageURL: undefined, // หรือค่าที่เหมาะสมตามการใช้งาน
+  //   };
+
+  //   this.orderService.addOrder(order, this.selectedFile).subscribe((response: any) => {
+  //     this.resetForm();
+  //     this.getFiles();
+  //     this.CreateNewOrder = false;
+  //   }, error => {
+  //     console.error('Error uploading image:', error);
+  //   });
+  // } 
+
+  // createOrder(): void {
+  //   if (!this.selectedFile) {
+  //     console.error('No image selected.');
+  //     return;
+  //   }
+  
+  //   const order: Order = {
+  //     id: undefined, // หรือค่าที่เหมาะสมตามการใช้งาน
+  //     name: this.testForm.get('name')?.value,
+  //     foodType: this.testForm.get('foodType')?.value,
+  //     price: this.testForm.get('price')?.value,
+  //     imageName: this.selectedFile.name,
+  //     imageURL: undefined, // หรือค่าที่เหมาะสมตามการใช้งาน
+  //   };
+  
+  //   this.orderService.addOrder(order, this.selectedFile).subscribe((response: any) => {
+  //     this.resetForm();
+  //     this.getFiles();
+  //     this.CreateNewOrder = false;
+  //   }, error => {
+  //     console.error('Error uploading image:', error);
+  //   });
+  // }
+  
   createOrder(): void {
     if (!this.selectedFile) {
       console.error('No image selected.');
       return;
     }
-
+  
     const order: Order = {
       id: undefined, // หรือค่าที่เหมาะสมตามการใช้งาน
       name: this.testForm.get('name')?.value,
@@ -130,7 +193,7 @@ export class ListEditComponent implements OnInit {
       imageName: this.selectedFile.name,
       imageURL: undefined, // หรือค่าที่เหมาะสมตามการใช้งาน
     };
-
+  
     this.orderService.addOrder(order, this.selectedFile).subscribe((response: any) => {
       this.resetForm();
       this.getFiles();
@@ -138,7 +201,8 @@ export class ListEditComponent implements OnInit {
     }, error => {
       console.error('Error uploading image:', error);
     });
-  } 
+  }
+
 }
 
 

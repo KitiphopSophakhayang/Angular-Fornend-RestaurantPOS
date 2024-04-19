@@ -3,6 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DiningTable } from './dining-table.model';
+import { FilterPipe, FilterByFoodTypePipe } from '../filter.pipe'; // เพิ่มนี้เข้ามา
+
 
 export class Order {
   id: number | undefined;
@@ -25,6 +27,13 @@ export class OrderItem {
   quantity: number | undefined;
   receiptNumber: string | undefined;
 }
+
+// export interface FoodType {
+//   id: number;
+//   name: string;
+//   // สามารถเพิ่ม properties อื่น ๆ ตามต้องการได้
+// }
+
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +59,35 @@ export class OrderService {
 
     return this.http.post<Order>(`${this.baseUrl}/addOrder`, formData);
   }
+
+  // addOrder(order: Order, file: File): Observable<Order> {
+  //   const formData: FormData = new FormData();
+  //   // ตรวจสอบว่าค่าของ order.name, order.foodType, และ order.price ไม่ใช่ undefined ก่อนที่จะใช้
+  //   if (order.name) formData.append('name', order.name);
+  //   if (order.foodType) formData.append('foodTypeId', order.foodType);
+  //   if (order.price) formData.append('price', order.price.toString());
+  //   formData.append('file', file);
+  
+  //   return this.http.post<Order>(`${this.baseUrl}/addOrder`, formData);
+  // }
+  
+
+  // addOrder(order: Order, file: File, foodTypes: FoodType[]): Observable<Order> {
+  //   const formData: FormData = new FormData();
+    
+  //   if (order.name) formData.append('name', order.name);
+  //   if (order.foodType) {
+  //     const foodType = foodTypes.find(type => type.name === order.foodType);
+  //     if (foodType) formData.append('foodTypeId', foodType.id.toString());
+  //   }
+  //   if (order.price) formData.append('price', order.price.toString());
+    
+  //   formData.append('file', file);
+  
+  //   return this.http.post<Order>(`${this.baseUrl}/addOrder`, formData);
+  // }
+  
+
 
   // // generateReceiptNumber(): string {
   // //   return uuidv4(); // สร้าง UUID เป็นเลขใบเสร็จ
@@ -128,4 +166,10 @@ export class OrderService {
   updateOrderStatus(orderData: any) {
     return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderStatus`, orderData)
   }
+
+  getFoodTypes(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:8085/food-types');
+  }
+
+  
 }

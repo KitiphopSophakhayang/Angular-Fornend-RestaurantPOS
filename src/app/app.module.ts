@@ -10,7 +10,7 @@ import { ListEditComponent } from './fontend-admin/list-edit/list-edit.component
 import { ReportComponent } from './fontend-admin/report/report.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './filter.pipe';
+import { FilterByFoodTypePipe, FilterPipe } from './filter.pipe';
 import { ImageCropperDialogComponent } from './image-cropper-dialog/image-cropper-dialog.component';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -49,6 +49,7 @@ export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
     TopMenuComponent,
     OrderMenuSuccessComponent,
     StatusPipePipe,
+    FilterByFoodTypePipe,
 
   ],
   imports: [
@@ -62,6 +63,7 @@ export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
     MatDialogModule,
     SweetAlert2Module.forRoot(),
     BrowserAnimationsModule,
+    
   ],
   providers: [MatDialogModule, { provide: MAT_MDC_DIALOG_DATA, useValue: {} }],
   bootstrap: [AppComponent],

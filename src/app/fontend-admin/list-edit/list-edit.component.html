@@ -4,14 +4,21 @@
       <div class="pl-4 pt-10">
           <p class="text-stone-600 sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl ">แก้ไขรายการ</p>
       </div>
-      <div class="grid grid-cols-4 gap-3 mx-3 mt-5 responsive-text">
+      <div class="grid grid-cols-4 gap-3 mx-3 mt-5 responsive-text overflow-x-auto">        
         <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">                 
            <div class="flex flex-col items-center">
                 <img src="assets/image/plus.png" class="w-20 ">
                   <p class="text-white">เพิ่มรายการ</p>
               </div>
           </div>
-          
+              
+          <div *ngFor="let foodType of foodTypes" class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">
+            <div class="flex flex-col items-center">
+              <img src="assets/image/noodles.png">
+                <p class="mx-auto">{{ foodType.name }}</p>
+              </div>
+          </div>
+
           <div class="flex items-center justify-center bg-[rgba(217,217,217,255)]  hover:border-2 border-orange-500  p-5 rounded-3xl">
             <div class="flex flex-col items-center">
                 <img src="assets/image/noodles.png">
@@ -31,6 +38,43 @@
               </div>
           </div> 
       </div>
+
+      <!-- <div class="flex overflow-x-auto sm:overflow-hidden">
+        <div class="bg-[rgba(217,217,217,255)] hover:border-2 border-orange-500 p-5 rounded-3xl">
+          <div class="flex flex-col items-center">
+            <img src="assets/image/plus.png" class="w-auto h-auto object-contain">
+
+            <p class="text-white">เพิ่มรายการ</p>
+          </div>
+        </div>
+        <div *ngFor="let foodType of foodTypes" class="flex-shrink-0 bg-[rgba(217,217,217,255)] hover:border-2 border-orange-500 p-5 rounded-3xl flex-grow">
+          <div class="flex flex-col items-center">
+            <img src="assets/image/noodles.png" class="w-auto h-auto object-contain">
+            <p class="mx-auto">{{ foodType.name }}</p>
+          </div>
+        </div>
+      </div> -->
+      
+      
+  
+
+      <!-- <div class="flex overflow-x-auto gap-3 responsive-text m-5 min-w-[430px] md:min-w-[2px] lg:min-w-[2px] xl:min-w-[2px] 2xl:min-w-[3px] 3xl:min-w-[6px] 4xl:min-w-[6px]">
+        <div class="bg-[rgba(217,217,217,255)] hover:border-2 border-orange-500 p-5 rounded-3xl">
+          <div class="flex flex-col items-center">
+            <img src="assets/image/plus.png" class="w-auto">
+            <p class="text-white">เพิ่มรายการ</p>
+          </div>
+        </div>
+        <div *ngFor="let foodType of foodTypes" class="flex-shrink-0 bg-[rgba(217,217,217,255)] hover:border-2 border-orange-500 p-5 rounded-3xl">
+          <div class="flex flex-col items-center">
+            <img src="assets/image/noodles.png" class="w-auto">
+            <p class="mx-auto">{{ foodType.name }}</p>
+          </div>
+        </div>
+      </div> -->
+      
+      
+       
 
       <div class="pl-4 mt-3 ">
           <p class="text-stone-600 responsive-text ">รายการอาหารทั้งหมด</p>
@@ -52,7 +96,7 @@
           </div>
         </div>
         
-    </div>
+    </div >
     
   </div>
  
@@ -81,10 +125,18 @@
             </ul>
           </div>  
           
-          <div class="px-16 mb-4" *ngIf="selectedOrder">
+          <!-- <div class="px-16 mb-4" *ngIf="selectedOrder">
             <p class="text-gray-500">ประเภทอาหาร</p>
             <input [(ngModel)]="selectedOrder.foodType" required name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-          </div>
+          </div> -->
+        <div class="px-16 mb-4" *ngIf="selectedOrder">
+          <p class="text-gray-500">ประเภทอาหาร</p>
+          <select [(ngModel)]="selectedOrder.foodType" name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+            <option *ngFor="let foodType of foodTypes" [value]="foodType.id">{{ foodType.name }}</option>
+          </select>
+        </div>
+
+          
           <div class="px-16 mb-4" *ngIf="selectedOrder">
             <p class="text-gray-500">ชื่ออาหาร</p>
             <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
@@ -149,7 +201,7 @@
               </div>
           </div>
       </div>
-      <div class="px-16 mb-4">
+      <!-- <div class="px-16 mb-4">
           <p class="text-gray-500">ประเภทอาหาร</p>
           <div class="relative">
               <input id="foodType" formControlName="foodType" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
@@ -159,7 +211,39 @@
                   </svg>
               </div>
           </div>
+      </div> -->
+      <!-- <div class="px-16 mb-4">
+        <p class="text-gray-500">ประเภทอาหาร</p>
+        <div class="relative">
+          <select id="foodType" formControlName="foodType" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
+            <option value="" disabled selected>กรุณาเลือกประเภทอาหาร</option>
+            <option value="ตามสั่ง">ตามสั่ง</option>
+            <option value="ก๋วยเตี๋ยว">ก๋วยเตี๋ยว</option>
+            <option value="ของทานเล่น">ของทานเล่น</option>
+            <option value="เครื่องดื่ม">เครื่องดื่ม</option>
+          </select>
+          <div *ngIf="testForm.get('foodType')?.invalid && (testForm.get('foodType')?.touched || testForm.get('foodType')?.dirty)" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+      </div> -->
+      <div class="px-16 mb-4">
+        <p class="text-gray-500">ประเภทอาหาร</p>
+        <div class="relative">
+          <select id="foodType" formControlName="foodType" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent">
+            <option value="" disabled selected>กรุณาเลือกประเภทอาหาร</option>
+            <option *ngFor="let foodType of foodTypes" [value]="foodType.id">{{ foodType.name }}</option>
+          </select>
+          <div *ngIf="testForm.get('foodType')?.invalid && (testForm.get('foodType')?.touched || testForm.get('foodType')?.dirty)" class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+            <svg class="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
       </div>
+      
       <div class="px-16 mb-4">
           <p class="text-gray-500">ราคา</p>
           <div class="relative">

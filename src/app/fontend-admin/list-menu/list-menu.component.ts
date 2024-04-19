@@ -26,27 +26,117 @@ export class ListMenuComponent implements OnInit {
   addOrders: boolean = false;
   customReceiptNumber: string | undefined;
   
-  constructor(private orderService: OrderService, private router: Router, public dialog: MatDialog) { }
+  foodTypes: any = [];
+  
+  foodTypeSelected: boolean = false; // เพิ่มตัวแปรนี้
+  selectedFoodType: string | null = null;
+  filteredOrders: any = [];
+  
+  constructor(private orderService: OrderService, private router: Router, public dialog: MatDialog ) { }
 
   ngOnInit(): void {
     this.getFiles();
     this.customReceiptNumber = 'ID' + Math.floor(Math.random() * 10000);
+    this.loadFoodTypes();
   }
 
+  loadFoodTypes(): void {
+    this.orderService.getFoodTypes().subscribe(
+      (data: any[]) => {
+        this.foodTypes = data;
+      },
+      (error: any) => {
+        console.error('Error fetching food types:', error);
+      }
+    );
+  }
+
+  selectCategory(foodType: any): void {
+    this.selectedFoodType = foodType.food_type_id;
+    this.getFiles(); // เรียกเมธอด getFiles() เพื่อดึงรายการอาหารที่เลือกใหม่
+  }
+  
   getFiles(): void {
+    const uniqueOrders = new Set();
+    this.filteredOrders = []; // เคลียร์รายการอาหารที่มีอยู่แล้วทุกครั้งที่ดึงข้อมูลใหม่
     this.orderService.getAllOrders().subscribe(
       (response: any[]) => {
         response.forEach(element => {
-          element.test = 'data:image/jpeg;base64,' + element.data;
-          this.orders.push(element);
+          if (element.food_type_id === this.selectedFoodType) { // เช็คว่ารายการอาหารตรงกับหมวดหมู่ที่เลือกหรือไม่
+            const orderString = JSON.stringify(element);
+            if (!uniqueOrders.has(orderString)) {
+              uniqueOrders.add(orderString);
+              element.test = 'data:image/jpeg;base64,' + element.data;
+              this.filteredOrders.push(element);
+            }
+          }
         });
-        console.log(this.orders);
+        console.log(this.filteredOrders);
       },
       (error: any) => {
         console.error('Error fetching files:', error);
       }
     );
   }
+  
+  
+  
+  
+  
+
+  // selectCategory(foodType: any): void {
+  //   this.selectedFoodType = foodType.food_type_id; // สร้าง selectedFoodType จาก food_type_id
+  //   this.filterOrders(); // เรียกใช้งานฟังก์ชัน filterOrders เพื่อกรองรายการอาหาร
+  // }
+
+  // filterOrders(): void {
+  //   if (this.selectedFoodType) {
+  //     this.filteredOrders = this.orders.filter((order: any) => order.food_type_id === this.selectedFoodType);
+  //   } else {
+  //     this.filteredOrders = this.orders; // ถ้าไม่มีประเภทอาหารที่เลือกให้แสดงทั้งหมด
+  //   }
+  // }
+
+  
+  
+  
+  
+  
+  // getFiles(): void {
+  //   this.orderService.getAllOrders().subscribe(
+  //     (response: any[]) => {
+  //       response.forEach(element => {
+  //         if (!this.selectedFoodType || this.selectedFoodType.length === 0 || this.selectedFoodType.includes(element.category)) {
+  //           element.test = 'data:image/jpeg;base64,' + element.data;
+  //           this.filteredOrders.push(element); // เก็บข้อมูลที่ผ่านการกรองเท่านั้น
+  //         }
+  //       });
+  //       console.log(this.filteredOrders);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching files:', error);
+  //     }
+  //   );
+  // }
+  
+  
+  
+  
+
+  // getFiles(): void {
+  //   this.orderService.getAllOrders().subscribe(
+  //     (response: any[]) => {
+  //       response.forEach(element => {
+  //         element.test = 'data:image/jpeg;base64,' + element.data;
+  //         this.orders.push(element);
+  //       });
+  //       console.log(this.orders);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching files:', error);
+  //     }
+  //   );
+  // }
 
   // เพิ่มสินค้าลงในตะกร้า
   add_cart(order: any): void {

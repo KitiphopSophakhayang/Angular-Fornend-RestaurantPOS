@@ -32,7 +32,7 @@
           class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-green-500"
         >
           <div class="flex items-center mb-2">
-            <p class="mx">ออเดอร์ :</p>
+            <p class="mx">เมนู :</p>
             <p>#{{ order.orderItemId }}</p>
           </div>
           <div class="flex items-center">
@@ -48,7 +48,7 @@
   <div *ngIf="!orderDisplayStatus">
     <div class="grid grid-row-4 bg-white h-screen sticky top-0">
       <div class="flex px-4 pt-8 text-[rgb(129,125,125)] responsive-text">
-        <p>กดเลือกดู</p>
+        <p>กดเลือกดูอาหารที่เสร็จแล้ว</p>
       </div>
       <div class="py-20">
         <img
@@ -67,7 +67,7 @@
     <div class="grid grid-row-4 bg-white h-screen sticky top-0">
       <form [formGroup]="orderForm">
         <div class="pt-16 mb-6 px-5 border responsive-text">
-          <h1>หมายเลขออเดอร์ที่ : {{ orderForm.get("orderId")?.value }}</h1>
+          <h1>หมายเลขเมนู : {{ orderForm.get("orderId")?.value }}</h1>
         </div>
         <div class="flex flex-col responsive-text">
           <div class="flex justify-between items-center border px-2">
