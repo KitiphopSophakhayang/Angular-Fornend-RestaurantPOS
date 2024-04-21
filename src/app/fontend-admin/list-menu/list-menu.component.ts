@@ -38,6 +38,7 @@ export class ListMenuComponent implements OnInit {
   ngOnInit(): void {
     this.customReceiptNumber = 'ID' + Math.floor(Math.random() * 10000);
     // this.loadAllFoodType();
+    this.getFiles();
     this.loadFoodTypes();
   }
 
@@ -48,27 +49,76 @@ export class ListMenuComponent implements OnInit {
     });
   }
 
-  loadAllFoodType(): void {
-    this.orderService.getAllOrderItems().subscribe(res => this.filteredOrders = res)
-  }
+  // loadAllFoodType(): void {
+  //   this.orderService.getAllOrderItems().subscribe(res => this.filteredOrders = res)
+  // }
+
+  // selectCategory(foodType: any): void {
+  //   const id = foodType.id;
+  //   this. getFilesByFoodType(id);
+    
+  // }
 
   selectCategory(foodType: any): void {
     const id = foodType.id;
-    this.getFiles(id);
+    this.getFilesByFoodType(id);
+    this.foodTypeSelected = true; // เมื่อเลือกหมวดหมู่อาหาร
   }
+  
+  clearCategory(): void {
+    this.foodTypeSelected = false; // เมื่อไม่ได้เลือกหมวดหมู่อาหาร
+    // เรียกเมธอดอื่นที่อาจจะต้องเคลียร์ข้อมูลที่เกี่ยวข้องกับหมวดหมู่อาหารที่ถูกเลือกไว้
+  }
+  
 
-  getFiles(id: number): void {
-    this.filteredOrders = []; // เคลียร์รายการอาหารที่มีอยู่แล้วทุกครั้งที่ดึงข้อมูลใหม่
-    this.orderService.getFoodTypeById(id).subscribe(
-      (response: any[]) => {
-        response.forEach((element) => {
-          element.test = 'data:image/jpeg;base64,' + element.data;
-          this.filteredOrders.push(element);
-        });
-        console.log(this.filteredOrders);
+  showAllOrders(): void {
+    this.foodTypeSelected = false; // อย่าลืมตั้งค่า foodTypeSelected เป็น false เพื่อแสดงรายการทั้งหมด
+    this.filteredOrders = this.files;
+  }
+  
+
+  // getFiles(id: number): void {
+  //   this.filteredOrders = []; // เคลียร์รายการอาหารที่มีอยู่แล้วทุกครั้งที่ดึงข้อมูลใหม่
+  //   this.orderService.getFoodTypeById(id).subscribe(
+  //     (response: any[]) => {
+  //       response.forEach((element) => {
+  //         element.test = 'data:image/jpeg;base64,' + element.data;
+  //         this.filteredOrders.push(element);
+  //       });
+  //       console.log(this.filteredOrders);
+  //     },
+  //     (error: any) => {
+  //       console.error('Error fetching files:', error);
+  //     }
+  //   );
+  // }
+
+
+  getFiles(): void {
+    this.orderService.getAllOrders().subscribe(
+      (response: any[]) => {     
+        this.files = response.map(element => ({
+          ...element,
+          test: 'data:image/jpeg;base64,' + element.data
+        }));
       },
       (error: any) => {
         console.error('Error fetching files:', error);
+      }
+    );
+  }
+  
+  getFilesByFoodType(id: number): void {
+    this.filteredOrders = [];
+    this.orderService.getFoodTypeById(id).subscribe(
+      (response: any[]) => {
+        this.filteredOrders = response.map(element => ({
+          ...element,
+          test: 'data:image/jpeg;base64,' + element.data
+        }));
+      },
+      (error: any) => {
+        console.error('Error fetching files by food type:', error);
       }
     );
   }
