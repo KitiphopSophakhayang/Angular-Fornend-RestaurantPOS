@@ -174,4 +174,9 @@ export class OrderService {
   getFoodTypeById(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/getFoodTypeById/${id}`)
   }
+
+  getFoodDetails(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/details`);
+  }
+  
 }

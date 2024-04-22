@@ -28,6 +28,7 @@ export class ListMenuComponent implements OnInit {
   foodTypeSelected: boolean = false; // เพิ่มตัวแปรนี้
   selectedFoodType: string | null = null;
   filteredOrders: any = [];
+  
 
   constructor(
     private orderService: OrderService,

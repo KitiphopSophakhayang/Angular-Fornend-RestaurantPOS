@@ -21,12 +21,15 @@ export class ListEditComponent implements OnInit {
   selectedFiles: File[] = [];
   foodTypes: any[] = [];
 
+  foodDetails: any[] = [];
+
   constructor(private orderService: OrderService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.onInit();
     this.getFiles();
     this.loadFoodTypes();
+    this.getFoodDetails();
   }
 
   loadFoodTypes(): void {
@@ -36,6 +39,17 @@ export class ListEditComponent implements OnInit {
       },
       (error: any) => {
         console.error('Error fetching food types:', error);
+      }
+    );
+  }
+
+  getFoodDetails(): void {
+    this.orderService.getFoodDetails().subscribe(
+      (data: any[]) => {
+        this.foodDetails = data;
+      },
+      (error: any) => {
+        console.error('Error fetching food details:', error);
       }
     );
   }
