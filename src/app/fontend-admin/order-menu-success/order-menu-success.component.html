@@ -33,7 +33,7 @@
         >
           <div class="flex items-center mb-2">
             <p class="mx">เมนู :</p>
-            <p>#{{ order.orderItemId }}</p>
+            <p>#{{ order.order?.name }}</p>
           </div>
           <div class="flex items-center">
             <p class="">โต๊ะ :</p>
@@ -67,13 +67,13 @@
     <div class="grid grid-row-4 bg-white h-screen sticky top-0">
       <form [formGroup]="orderForm">
         <div class="pt-16 mb-6 px-5 border responsive-text">
-          <h1>หมายเลขเมนู : {{ orderForm.get("orderId")?.value }}</h1>
+          <h1>เมนู : {{ orderForm.controls["name"].value }}</h1>
         </div>
         <div class="flex flex-col responsive-text">
           <div class="flex justify-between items-center border px-2">
             <div class="justify-between mt-4">
               <h1>โต๊ะที่ : {{ orderForm.controls["tableId"].value }}</h1>
-              <h1>เมนู : {{ orderForm.controls["name"].value }}</h1>
+              <!-- <h1>เมนู : {{ orderForm.controls["name"].value }}</h1> -->
               <h1>จำนวน : {{ orderForm.controls["quantity"].value }}</h1>
               <h1>ประเภท : {{ orderForm.controls["foodType"].value }}</h1>
               <!-- <h1>{{orderForm.controls['price'].value}}</h1> -->
