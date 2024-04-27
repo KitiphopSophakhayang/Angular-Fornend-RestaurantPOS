@@ -85,19 +85,18 @@
             </ul>
           </div>  
           
+          <div class="px-16 mb-4" *ngIf="selectedOrder">
+            <p class="text-gray-500">ชื่ออาหาร</p>
+            <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
+          </div>
+
         <div class="px-16 mb-4" *ngIf="selectedOrder">
           <p class="text-gray-500">ประเภทอาหาร</p>
           <select [(ngModel)]="selectedOrder.foodType" name="food_type" class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
             <option *ngFor="let foodType of foodTypes" [value]="foodType.id">{{ foodType.name }}</option>
           </select>
         </div>
-
-          
-          <div class="px-16 mb-4" *ngIf="selectedOrder">
-            <p class="text-gray-500">ชื่ออาหาร</p>
-            <input [(ngModel)]="selectedOrder.name" name="name" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">
-          </div>
-     
+  
           <div class="px-16 mt-4 mb-4" *ngIf="selectedOrder">
             <p class="text-gray-500">ราคา</p>
             <input type="number" [(ngModel)]="selectedOrder.price" name="price" required class="bg-[rgba(217,217,217,255)] border rounded-md p-2 w-full">

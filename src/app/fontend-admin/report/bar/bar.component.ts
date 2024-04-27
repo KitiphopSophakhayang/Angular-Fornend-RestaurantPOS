@@ -34,6 +34,10 @@ export class BarComponent implements OnInit{
   }
   
   createChart() {
+    // เรียงลำดับข้อมูลใน label และ data
+    this.label.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+    this.data.sort((a, b) => new Date(a).getTime() - new Date(b).getTime());
+  
     const ctx = this.myChart.nativeElement.getContext('2d');
     this.chart = new Chart(ctx, {
       type: 'bar',
@@ -52,4 +56,5 @@ export class BarComponent implements OnInit{
       options: option,
     });
   }
+  
 }

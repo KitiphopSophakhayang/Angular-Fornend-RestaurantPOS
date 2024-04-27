@@ -1,0 +1,95 @@
+<div class="grid grid-cols-[7fr_5fr]">
+    <div class="bg-[rgba(245,245,245,255)]">
+        <div class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
+            <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl" [routerLink]="'/OrderMenu'" style="cursor: pointer;">
+                ออเดอร์ล่าสุด
+            </div>
+            <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl" [routerLink]="'/success'" style="cursor: pointer;">
+                เสร็จแล้ว
+            </div>
+            <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl" [routerLink]="'/history'" style="cursor: pointer;">
+                ประวัติรายการสั่งซื้อ
+            </div>
+        </div>
+   
+        <!-- <div class="p-6 responsive-text">
+          <div *ngFor="let item of ordersFromGroupedData; let i = index"(click)="onOpen()"
+            class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 mb-2 font-bold text-gray-500 hover:border-2 border-green-500">
+            <div class="flex items-center">
+            <p class="font-semibold ">{{ i + 1 }}</p>
+            <p class="mx pl-2"> โต๊ะ :</p> 
+            <p>{{ item.table_id }}</p>
+        </div>
+
+          <div class="flex items-center">
+            <div class="flex items-center">
+              <p class="font-semibold mr-2">วันที่ :</p>
+              <p>{{ item.order_date[2] }}/{{ item.order_date[1] }}/{{ item.order_date[0] }} เวลา: {{ item.order_date[3] }}:{{ item.order_date[4] }}:{{ item.order_date[5] }}</p>
+          </div>
+
+          </div>
+        </div>
+        
+    </div> -->
+    <div class="p-6 responsive-text">
+      <div *ngFor="let item of ordersFromGroupedData; let i = index" (click)="onOpen(item)" class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 mb-2 font-bold text-gray-500 hover:border-2 border-green-500">
+        <div class="flex items-center">
+          <p class="font-semibold ">{{ i + 1 }}</p>
+          <p class="mx pl-2"> โต๊ะ :</p> 
+          <p>{{ item.table_id }}</p>
+        </div>
+        <div class="flex items-center">
+          <div class="flex items-center">
+            <p class="font-semibold mr-2">วันที่ :</p>
+            <p>{{ item.order_date[2] }}/{{ item.order_date[1] }}/{{ item.order_date[0] }} เวลา: {{ item.order_date[3] }}:{{ item.order_date[4] }}:{{ item.order_date[5] }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    <div *ngIf="!orderDisplayStatus">
+        <div class="grid grid-row-4 bg-white h-screen sticky top-0">
+            <div class="flex px-4 pt-8 text-[rgb(129,125,125)] responsive-text">
+                <p>ประวัติรายการสั่งซื้อ</p>
+            </div>
+            <div class="py-20">
+                <img src="assets/image/cooking.png" class="m-auto sm:w-4/5 md:w-w-4/5 lg:w-4/5 xl:w-4/5 2xl:w-4/5" />
+                <p class="text-center text-[rgb(129,125,125)] responsive-text">รายละเอียดออเดอร์</p>
+            </div>
+        </div>
+    </div>
+
+
+<div *ngIf="orderDisplayStatus">
+  <div class="grid grid-row-4 bg-white h-screen sticky top-0 responsive-text">
+    <p class="font-bold pt-16 mb-6 px-5 border">Transaction ID: {{ selectedItem.transaction_id }}</p>
+    <div class=" mt-2">
+      <p class="font-semibold mr-2">เมนู:</p>
+      <ul>
+          <li *ngFor="let menu of selectedItem.menu_names.split(','); let j = index">{{ j + 1 }}. {{ menu }}</li>
+      </ul>
+    </div>
+    <div class="">
+      <p class="font-semibold mr-2">โต๊ะ :</p>
+      <p>{{ selectedItem.table_id }}</p>
+    </div>
+    <div >
+      <p class="font-semibold mr-2">จำนวน :</p>
+      <p>{{ selectedItem.quantities }}</p>
+    </div>
+    <div >
+        <p class="font-semibold mr-2">สถานะ :</p>
+        <p>{{ selectedItem.statuses }}</p>
+    </div>
+    <div >
+        <p class="font-semibold mr-2">ราคารวม :</p>
+        <p>{{ selectedItem.total_price }}</p>
+    </div>
+    <div >
+        <p class="font-semibold mr-2">วันที่ :</p>
+        <p>{{ selectedItem.order_date[2] }}/{{ selectedItem.order_date[1] }}/{{ selectedItem.order_date[0] }} เวลา: {{ selectedItem.order_date[3] }}:{{ selectedItem.order_date[4] }}:{{ selectedItem.order_date[5] }}</p>
+    </div>
+  </div>
+</div>
+</div>

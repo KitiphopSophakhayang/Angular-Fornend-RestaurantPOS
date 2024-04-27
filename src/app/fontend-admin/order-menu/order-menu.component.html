@@ -2,7 +2,7 @@
   <!-- header -->
   <div class="bg-[rgba(245,245,245,255)]">
     <div
-      class="grid grid-cols-2 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
+      class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
       <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl"[routerLink]="'/OrderMenu'" style="cursor: pointer;">
           ออเดอร์ล่าสุด
@@ -11,6 +11,10 @@
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl " [routerLink]="'/success'" style="cursor: pointer;">
           เสร็จแล้ว
       </div>
+      <div
+      class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl " [routerLink]="'/history'" style="cursor: pointer;">
+        ประวัติรายการสั่งซื้อ
+    </div>
       <!-- <div
         class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl"
       >
@@ -22,18 +26,23 @@
 
     <!-- Order list -->
     <div class="p-6 responsive-text" (click)="onOpenOrder()">
-      <div class="pb-2" *ngFor="let order of ordersFromReceipt">
+      <div class="pb-2" *ngFor="let order of ordersFromReceipt; let i = index">
         <div
           class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500"
           (click)="onTest(order)"
         >
-          <div class="flex items-center mb-2">
-            <p class="mx">เมนู :</p>
-            <p>#{{ order.order?.name}}</p>
+          <div class="flex items-center">
+            <p class="font-semibold ">{{ i + 1 }}</p>
+            <p class="mx pl-2"> เมนู :</p> 
+            <p>{{ order.order?.name}}</p>
+            <div class="flex-grow"></div> 
+            <p class="mx pl-2 self-end"> ราคา :</p> 
+            <p>{{ order.order?.price}}</p>
           </div>
+          
           <div class="flex items-center">
             <p class="">โต๊ะ :</p>
-            <p>#{{ order.table.tableNumber }}</p>
+            <p>{{ order.table.tableNumber }}</p>
           </div>
         </div>
       </div>
@@ -62,16 +71,16 @@
     <div class="grid grid-row-4 bg-white h-screen sticky top-0">
       <form [formGroup]="orderForm">
         <div class="pt-16 mb-6 px-5 border responsive-text">
-          <h1>หมายเลขเมนู : {{ orderForm.get("orderId")?.value }}</h1>
+           <h1>โต๊ะที่ : {{ orderForm.controls["tableId"].value }}</h1>
         </div>
         <div class="flex flex-col responsive-text">
           <div class="flex justify-between items-center border px-2">
             <div class="justify-between mt-4">
               <!-- {{orderForm.value | json}} -->
-              <h1>โต๊ะที่ : {{ orderForm.controls["tableId"].value }}</h1>
+             
               <h1>เมนู : {{ orderForm.controls["name"].value }}</h1>
               <h1>จำนวน : {{ orderForm.controls["quantity"].value }}</h1>
-              <h1>ประเภท : {{orderForm.controls['foodType'].value}}</h1>
+              <!-- <h1>ประเภท : {{orderForm.controls['foodType'].value}}</h1> -->
               <!-- <h1>{{orderForm.controls['price'].value}}</h1> -->
               <h1>สถานะ : {{ orderForm.controls["status"].value | statusPipe }}</h1>
             </div>

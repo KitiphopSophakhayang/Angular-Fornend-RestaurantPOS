@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { DiningTable } from './dining-table.model';
 import { FilterPipe, FilterByFoodTypePipe } from '../filter.pipe'; // เพิ่มนี้เข้ามา
+import { forkJoin } from 'rxjs';
 
 
 export class Order {
@@ -177,6 +178,20 @@ export class OrderService {
 
   getFoodDetails(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/details`);
+  }
+
+  // getOrderHistory(): Observable<any[]> {
+  //   return this.http.get<any[]>(`${this.baseUrl}/orderItems/getFormatted`);
+  // }
+  
+  getOrderItemsForTables(tableIds: number[]): Observable<any[][]> {
+    const requests = tableIds.map(tableId => this.http.get<any[]>(`${this.baseUrl}/orderItems/table/${tableId}/status/success`));
+    return forkJoin(requests);
+  }
+  
+
+  getGroupedOrderItems(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/orderItems/groupedData`);
   }
   
 }

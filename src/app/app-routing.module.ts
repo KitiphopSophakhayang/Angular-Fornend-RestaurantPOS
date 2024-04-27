@@ -5,6 +5,7 @@ import { ListMenuComponent } from './fontend-admin/list-menu/list-menu.component
 import { OrderMenuComponent } from './fontend-admin/order-menu/order-menu.component';
 import { ReportComponent } from './fontend-admin/report/report.component';
 import { OrderMenuSuccessComponent } from './fontend-admin/order-menu-success/order-menu-success.component';
+import { OrderHistoryComponent } from './fontend-admin/order-history/order-history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/ListMenu', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'ListEdit', component: ListEditComponent },
   { path: 'Report', component: ReportComponent },
   { path: 'success', component: OrderMenuSuccessComponent },
+  { path: 'history', component: OrderHistoryComponent},
   { path: '**', redirectTo: 'ListMenu' },
 ];
 

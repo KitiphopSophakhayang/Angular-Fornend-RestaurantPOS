@@ -56,7 +56,7 @@ export class OrderMenuComponent implements OnInit {
       id: order.order?.id,
       name: order.order?.name,
       foodType: order.order?.foodType,
-      price: order.order?.foodType,
+      price: order.order?.price,
       tableId: order.table?.tableId,
       status: order.status,
       orderId: order.orderItemId,
