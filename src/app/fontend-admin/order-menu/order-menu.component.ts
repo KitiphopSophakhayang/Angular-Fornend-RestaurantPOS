@@ -78,7 +78,7 @@ export class OrderMenuComponent implements OnInit {
         icon: 'success',
         title: 'ทำเสร็จเรียบร้อย',
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1450,
       });
     });
   }
