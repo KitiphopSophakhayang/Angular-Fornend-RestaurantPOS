@@ -22,11 +22,13 @@ export class OrderItem {
   orderDate: Date | undefined;
   totalPrice: number | undefined;
   table: any | undefined;
+  tableId: number | undefined;
   status: string | undefined;
   tableNumber: string | undefined;
   transaction_id: any;
   quantity: number | undefined;
   receiptNumber: string | undefined;
+  details: any[] | undefined; // เพิ่มฟิลด์ details เพื่อเก็บรายละเอียดเพิ่มเติม
 }
 
 // export interface FoodType {
