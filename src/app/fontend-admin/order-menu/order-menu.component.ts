@@ -22,10 +22,10 @@ export class OrderMenuComponent implements OnInit {
     const payload = 'pending';
     this.orderService.getOrderByStatus(payload).subscribe((res: any[]) => {
       // console.log(res);
-      this.ordersFromReceipt = res;
+      this.ordersFromReceipt = res; // เปลี่ยนเป็นการเก็บข้อมูลทั้งหมดที่ได้รับมา
     });
   }
-
+  
   onInintForm() {
     this.orderForm = this.fb.group({
       id: new FormControl(null),
@@ -38,14 +38,6 @@ export class OrderMenuComponent implements OnInit {
       quantity: new FormControl(null),
     });
   }
-
-  // getOrderItemsByTransactionId(transactionId: string): void {
-  //   this.orderService
-  //     .getOrderItemsByTransactionId(transactionId)
-  //     .subscribe((res: any) => {
-  //       console.log(res);
-  //     });
-  // }
 
   onOpenOrder() {
     this.orderDisplayStatus = true;
@@ -69,10 +61,10 @@ export class OrderMenuComponent implements OnInit {
       orderItemId: this.orderForm.controls['orderId'].value,
       status: 'success',
     } as UpdOrderStatusBean;
-
+  
     this.orderService.updateOrderStatus(payload).subscribe((res: boolean) => {
       this.orderDisplayStatus = false;
-      this.ngOnInit();
+      this.ngOnInit(); // เรียกใช้งาน ngOnInit เพื่ออัปเดตข้อมูล
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -82,4 +74,6 @@ export class OrderMenuComponent implements OnInit {
       });
     });
   }
+  
+
 }

@@ -18,7 +18,7 @@ export class OrderMenuSuccessComponent {
     this.service
       .getOrderByStatus(payload)
       .subscribe((res) => {
-        this.ordersFromReceipt = res
+        this.ordersFromReceipt = res;
       });
   }
 
@@ -44,11 +44,11 @@ export class OrderMenuSuccessComponent {
       id: order.order?.id,
       name: order.order?.name,
       foodType: order.order?.foodType,
-      price: order.order?.foodType,
+      price: order.order?.price,
       tableId: order.table?.tableId,
       status: order.status,
       orderId: order.orderItemId,
       quantity: order.quantity,
-    })
+    });
   }
 }

@@ -18,30 +18,23 @@
 
     <!-- Order list -->
     <div class="p-6 responsive-text">
-      <div
-        class="pb-2"
-        *ngFor="let order of ordersFromReceipt ; let i = index"
-        (click)="onOpen()">
-
-        <div
-          (click)="onOpenOrder(order)"
-          class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-green-500">
-        <div class="flex items-center">
-          <p class="font-semibold ">{{ i + 1 }}</p>
-          <p class="mx pl-2"> เมนู :</p> 
-          <p>{{ order.order?.name}}</p>
-          <div class="flex-grow"></div> 
-          <p class="mx pl-2 self-end"> ราคา :</p> 
-          <p>{{ order.order?.price}}</p>
-        </div>
-        
-        <div class="flex items-center">
-          <p >โต๊ะ :</p>
-          <p>{{ order.table.tableNumber }}</p>
-        </div>
+      <div class="pb-2" *ngFor="let order of ordersFromReceipt">
+        <div (click)="onOpenOrder(order)" class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-green-500">
+          <div class="flex items-center">
+            <p class="font-semibold ">{{ order.order?.name}}</p>
+            <div class="flex-grow"></div> 
+            <p class="mx pl-2 self-end"> ราคา :</p> 
+            <p>{{ order.order?.price}}</p>
+          </div>
+          
+          <div class="flex items-center">
+            <p>โต๊ะ :</p>
+            <p>{{ order.table?.tableNumber }}</p>
+          </div>
         </div>
       </div>
     </div>
+    
   </div>
   <!-- No Order display -->
   <div *ngIf="!orderDisplayStatus">
