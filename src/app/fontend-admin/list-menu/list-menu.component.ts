@@ -274,6 +274,7 @@ export class ListMenuComponent implements OnInit {
     // เพิ่มสถานะ "pending" และ "totalPrice" ในรายการอาหารที่เลือก
     this.selectedOrders.forEach((order: any) => {
       order.status = 'pending';
+      order.payment_status ='uncomplete';
       order.totalPrice = totalPrice;
       order.order = { id: order.id }; // เพิ่ม id ของรายการอาหารลงใน order
       order.receiptNumber = this.generateReceiptNumber(); // สร้างเลขใบเสร็จและเก็บไว้ในข้อมูลของรายการอาหาร

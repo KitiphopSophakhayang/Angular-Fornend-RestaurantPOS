@@ -8,15 +8,16 @@
       <p>ออเดอร์ทั้งหมด</p>
     </div>
   </div>
-  <div class="bg-white rounded-3xl p-5 hover:border-2 border-orange-500">
+  <div *ngFor="let monthIncome of monthlyTotalIncomes" class="bg-white rounded-3xl p-5 hover:border-2 border-orange-500">
     <div class="flex justify-end">
       <img src="assets/image/business-and-finance 1.png" />
     </div>
     <div>
-      <p class="font-bold text-5xl">{{allTotalPrice | number:'1.2-2'}}</p>
-      <p>รายได้ทั้งหมด</p>
+      <p class="font-bold text-5xl">{{ monthIncome.totalIncome | number:'1.2-2' }}</p>
+      <p>ราคารวมต่อเดือน</p>
     </div>
   </div>
+  
   <div class="bg-white rounded-3xl p-5 hover:border-2 border-orange-500">
     <div class="flex justify-end">
       <img src="assets/image/checklist 1.png" />

@@ -27,6 +27,8 @@ import { TopMenuComponent } from './fontend-admin/report/top-menu/top-menu.compo
 import { OrderMenuSuccessComponent } from './fontend-admin/order-menu-success/order-menu-success.component';
 import { StatusPipePipe } from './pipe/status-pipe.pipe';
 import { OrderHistoryComponent } from './fontend-admin/order-history/order-history.component';
+import { PaymentHistoryComponent } from './fontend-admin/payment-history/payment-history.component';
+import { PaymentDialogComponent } from './payment-dialog/payment-dialog.component';
 
 export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
 
@@ -52,6 +54,8 @@ export const MAT_MDC_DIALOG_DATA = new InjectionToken<any>('MatMdcDialogData');
     StatusPipePipe,
     FilterByFoodTypePipe,
     OrderHistoryComponent,
+    PaymentHistoryComponent,
+    PaymentDialogComponent,
 
   ],
   imports: [

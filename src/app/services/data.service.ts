@@ -29,6 +29,7 @@ export class OrderItem {
   quantity: number | undefined;
   receiptNumber: string | undefined;
   details: any[] | undefined; // เพิ่มฟิลด์ details เพื่อเก็บรายละเอียดเพิ่มเติม
+  payment_status: string | undefined; 
 }
 
 // export interface FoodType {

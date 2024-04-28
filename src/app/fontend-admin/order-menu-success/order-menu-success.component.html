@@ -1,21 +1,20 @@
 <div class="grid grid-cols-[7fr_5fr]">
   <!-- header -->
   <div class="bg-[rgba(245,245,245,255)]">
-      <div
-        class="grid grid-cols-3 gap-3 mx-3 mt-24 text-gray-500 responsive-text">
-        <div
-          class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl"[routerLink]="'/OrderMenu'" style="cursor: pointer;">
-            ออเดอร์ล่าสุด
-        </div>
-        <div
-          class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl " [routerLink]="'/success'" style="cursor: pointer;">
-            เสร็จแล้ว
-        </div>
-        <div
-        class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl " [routerLink]="'/history'" style="cursor: pointer;">
-          ประวัติรายการสั่งซื้อ
+    <div class="grid grid-cols-4 gap-4 mx-3 mt-24 text-gray-500 responsive-text">
+      <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 p-2 rounded-3xl" [routerLink]="'/OrderMenu'" style="cursor: pointer;">
+          ออเดอร์ล่าสุด
       </div>
-    </div>
+      <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl" [routerLink]="'/success'" style="cursor: pointer;">
+          เสร็จแล้ว
+      </div>
+      <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl" [routerLink]="'/history'" style="cursor: pointer;">
+          ยังไม่ชำระเงิน
+      </div>
+      <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-orange-300 hover:text-orange-500 rounded-3xl" [routerLink]="'/paymenthistory'" style="cursor: pointer;">
+          ประวัติการชำระเงิน
+       </div>
+  </div>
 
     <!-- Order list -->
     <div class="p-6 responsive-text">
