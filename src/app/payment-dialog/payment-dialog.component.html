@@ -1,6 +1,5 @@
-<h1 mat-dialog-title>ยืนยันการชำระเงิน</h1>
+<h1 mat-dialog-title class="text-center">ยืนยันการชำระเงิน</h1>
 <div mat-dialog-content>
-  <p>คุณต้องการที่จะยืนยันการชำระเงินหรือไม่?</p>
   <ul>
     <li *ngFor="let order of data.selectedOrders">
       <p>โต๊ะ: {{ order.table_id }}</p>
@@ -10,12 +9,12 @@
       <!-- เพิ่มข้อมูลเพิ่มเติมตามต้องการ -->
     </li>
   </ul>
-  <p>ราคารวมทั้งหมด: {{ totalPrice }}</p>
+  <p class="font-bold">ราคารวมทั้งหมด: {{ totalPrice }}</p>
 </div>
 <div mat-dialog-actions>
   <!-- <button mat-button [mat-dialog-close]="true">ยืนยัน</button>
   <button mat-button [mat-dialog-close]="false">ยกเลิก</button> -->
-  <div class="flex justify-end pr-8">
+  <div class="flex justify-end p-8">
     <button (click)="onConfirm()" class="bg-yellow-500 hover:bg-yellow-400 text-white py-2 px-4 rounded-3xl mt-4 mr-2 w-32 ">
         ตกลง
     </button>

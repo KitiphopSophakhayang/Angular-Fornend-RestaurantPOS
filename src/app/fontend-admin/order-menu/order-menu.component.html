@@ -18,13 +18,13 @@
 
     <!-- Order list -->
     <div class="p-6 responsive-text" (click)="onOpenOrder()">
-      <div class="pb-2" *ngFor="let order of ordersFromReceipt">
+      <div class="pb-2" *ngFor="let order of ordersFromReceipt; let i = index">
         <div
           class="justify-self-end bg-white h-32 shadow-md rounded-xl flex flex-col justify-center p-5 font-bold text-gray-500 hover:border-2 border-orange-500"
-          (click)="onTest(order)"
-        >
+          (click)="onTest(order)">
           <div class="flex items-center">
-            <p class="font-semibold "> เมนู :</p> 
+            <p class="font-semibold ">{{ i + 1 }}</p>
+            <p class="font-semibold pl-2"> เมนู :</p> 
             <p>{{ order.order?.name}}</p>
             <div class="flex-grow"></div> 
             <p class="mx pl-2 self-end"> ราคา :</p> 

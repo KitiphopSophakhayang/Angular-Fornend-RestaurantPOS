@@ -40,6 +40,7 @@ export class OrderMenuSuccessComponent {
   }
 
   onOpenOrder(order: any) {
+    this.onOpen(); // เพิ่มเรียกใช้เมท็อด onOpen()
     this.orderForm.patchValue({
       id: order.order?.id,
       name: order.order?.name,
@@ -51,4 +52,7 @@ export class OrderMenuSuccessComponent {
       quantity: order.quantity,
     });
   }
+  
 }
+
+
