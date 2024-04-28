@@ -171,6 +171,10 @@ export class OrderService {
     return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderStatus`, orderData)
   }
 
+  updateOrderPaymentStatus(orderData: any) {
+    return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderPaymentStatus`, orderData);
+  }
+
   getFoodTypes(): Observable<any[]> {
     return this.http.get<any[]>('http://localhost:8085/food-types');
   }

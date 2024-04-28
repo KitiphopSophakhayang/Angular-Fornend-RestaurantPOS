@@ -27,3 +27,9 @@ export interface UpdOrderStatusBean {
   status: string 
   orderItemId: number;    
 }
+
+
+export interface PaymentStatus {
+  payment_status: string;
+  orderItemId: number;    
+}
