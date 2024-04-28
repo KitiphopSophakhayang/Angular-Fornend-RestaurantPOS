@@ -46,6 +46,9 @@ export class OrderService {
   private baseUrl = environment.apiUrl;
   private apiUrl = 'http://localhost:8085/api';
   protected transectionId = new BehaviorSubject<any>(null);
+  selectedOrderItemIds = new BehaviorSubject<any>(null);
+  orderItemIds: any = []
+  ordersFromGroupedData: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -171,8 +174,8 @@ export class OrderService {
     return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderStatus`, orderData)
   }
 
-  updateOrderPaymentStatus(orderData: any) {
-    return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderPaymentStatus`, orderData);
+  updateOrderPaymentStatus(obj: any): Observable<any> {
+    return this.http.put<any>(`${this.baseUrl}/orderItems/updateOrderPaymentStatus`, obj);
   }
 
   getFoodTypes(): Observable<any[]> {
@@ -199,6 +202,11 @@ export class OrderService {
 
   getGroupedOrderItems(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/orderItems/groupedData`);
+  }
+  
+
+  getCompleteGroupedOrderItems(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/orderItems/completeGroupedData`);
   }
   
 }

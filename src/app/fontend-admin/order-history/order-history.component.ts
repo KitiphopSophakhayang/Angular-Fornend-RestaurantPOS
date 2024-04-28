@@ -217,7 +217,6 @@ export class OrderHistoryComponent implements OnInit {
   selectedItem: any = null;
   selectedItems: boolean[] = [];
 
-
   constructor(private orderService: OrderService, 
               private fb: FormBuilder,
               private dialog: MatDialog) { // เพิ่ม MatDialog ใน constructor
@@ -238,22 +237,26 @@ export class OrderHistoryComponent implements OnInit {
     this.orderService.getGroupedOrderItems()
       .subscribe((data: any[]) => {
         this.ordersFromGroupedData = data;
+        
       });
   }
   
   onOpen(item: any) {
     this.selectedItem = item;
+    
     this.orderDisplayStatus = true;
   }
 
   // เพิ่ม method toggleSelection เพื่อเปลี่ยนสถานะของ checkbox
-  toggleSelection(index: number) {
+  toggleSelection(index: number, item: any) {
+    this.orderService.orderItemIds.push(item.order_item_id)
     this.selectedItems[index] = !this.selectedItems[index];
   }
 
   openPaymentDialog(): void {
     // กรองเฉพาะรายการที่ถูกเลือก
     const selectedOrders = this.ordersFromGroupedData.filter((item, index) => this.selectedItems[index]);
+
   
     // เปิด Popup และส่งข้อมูลที่เลือกไปด้วย
     const dialogRef = this.dialog.open(PaymentDialogComponent, {
@@ -265,7 +268,7 @@ export class OrderHistoryComponent implements OnInit {
         // ทำการยืนยันการชำระเงิน
       } else {
         // ยกเลิกการชำระเงิน
-      }
+      } 
     });
   }
   

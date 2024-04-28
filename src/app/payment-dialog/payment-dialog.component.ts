@@ -53,23 +53,24 @@ export class PaymentDialogComponent {
 
   calculateTotal() {
     this.totalPrice = this.data.selectedOrders.reduce((total: number, order: any) => total + order.total_price, 0);
+    console.log(this.data);
+    
   }
 
   onConfirm(): void {
     // สร้าง payload สำหรับอัปเดตสถานะเป็น "complete"
+
+    console.log(this.orderService.orderItemIds)
+
     const payload = {
-      orderItemId: this.data.selectedOrders.map((order: any) => order.orderItemId),
-      payment_status: 'complete' // เปลี่ยน key เป็น payment_status
-    } as PaymentStatus;
+      orderItemIds: this.orderService.orderItemIds,
+      status: 'complete'
+    } ;
     
   
     // เรียกใช้งานเมธอดใน OrderService เพื่อทำการอัปเดตสถานะ
     this.orderService.updateOrderPaymentStatus(payload).subscribe((res: any) => {
-      // โหลดข้อมูลใหม่หลังจากอัปเดต
-      // ในที่นี้คุณอาจต้องโหลดข้อมูลใหม่เพื่อปรับปรุงสถานะการแสดงผลในอินเตอร์เฟซหลังจากอัปเดตสถานะแล้ว
-      // this.loadData();
-  
-      // แสดงข้อความแจ้งเตือนถ้าอัปเดตสถานะสำเร็จ
+      this.orderService.orderItemIds = []
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -83,6 +84,6 @@ export class PaymentDialogComponent {
   
 
   onCancel(): void {
-    // ปิด dialog โดยไม่ทำการอัปเดตสถานะ
+    this.orderService.orderItemIds = []
   }
 }
