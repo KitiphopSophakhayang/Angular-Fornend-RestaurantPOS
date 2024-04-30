@@ -36,13 +36,13 @@
         </div>
     </div>
   </div>
-  <div class="absolute bottom-0 right-0 h-16 w-64 2xl:w-24 2xl:h-20 flex justify-center items-center z-50 cursor-pointer m-4" style="position: fixed; bottom: 0; right: 0;">
+  <!-- <div class="absolute bottom-0 right-0 h-16 w-64 2xl:w-24 2xl:h-20 flex justify-center items-center z-50 cursor-pointer m-4" style="position: fixed; bottom: 0; right: 0;">
     <button (click)="openPaymentDialog()" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
       <div class="flex items-center justify-center">
         ยืนยันการชำระเงิน
       </div>
     </button>  
-  </div>
+  </div> -->
   
   
   </div>
@@ -61,23 +61,34 @@
 
 
 <div *ngIf="orderDisplayStatus">
-  <div class="  bg-white h-screen sticky top-0 responsive-text">
-    <p class="font-bold pt-16 p-5 mb-6 px-5 border">โต๊ะ : {{selectedItem.table_id }}</p>
+  <div class="  bg-white h-screen sticky top-0 responsive-text grid grid-rows-[3fr_2fr_2fr_2fr_4fr]">
+    <p class="font-bold pl-5 pt-24 border">โต๊ะ : {{selectedItem.table_id }}</p>
     <div class=" mt-2 p-5">
       <p class="font-semibold mr-2">เมนู:</p>
       <ul>
-          <li *ngFor="let menu of selectedItem.menu_names.split(','); let j = index">{{ j + 1 }}. {{ menu }}</li>
+        <ng-container *ngFor="let menu of selectedItem.menu_names.split(','); let j = index">
+          <li>{{ j + 1 }}. {{ menu }} (จำนวน: {{ selectedItem.quantities.split(',')[j] }})</li>
+        </ng-container>
       </ul>
     </div>
     <div class="p-5">
         <p class="font-semibold mr-2">ราคารวม :</p>
-        <p>{{ selectedItem.total_price }}</p>
+        <p>{{ selectedItem.total_price }} บาท</p>
     </div>
     <div class="p-5">
         <p class="font-semibold mr-2">วันที่ :</p>
         <p>{{ selectedItem.order_date[2] }}/{{ selectedItem.order_date[1] }}/{{ selectedItem.order_date[0] }} เวลา: {{ selectedItem.order_date[3] }}:{{ selectedItem.order_date[4] }}:{{ selectedItem.order_date[5] }}</p>
     </div>
-  </div>
+    <div class="mx-5 p-20 ">
+      <button (click)="openPaymentDialog()" class="hover:border-2 h-24 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white" style="z-index: 1;">
+        <div class="flex items-center justify-center">
+          ยืนยันการชำระเงิน
+        </div>
+      </button>  
+    </div>
+  
+    
+</div>
 </div>
 </div>
 

@@ -46,22 +46,25 @@
 
 
     <div *ngIf="orderDisplayStatus">
-      <div class="bg-white h-screen sticky top-0 responsive-text">
-        <p class="font-bold pt-16 p-5 mb-6 px-5 border">โต๊ะ : {{selectedItem.table_id }}</p>
-        <div class=" mt-2 p-5">
-          <p class="font-semibold mr-2">เมนู:</p>
-          <ul>
-              <li *ngFor="let menu of selectedItem.menu_names.split(','); let j = index">{{ j + 1 }}. {{ menu }}</li>
-          </ul>
-        </div>
-        <div class="p-5">
+        <div class="bg-white h-screen sticky top-0 responsive-text grid grid-rows-[3fr_2fr_2fr_2fr_4fr]">
+          <p class="font-bold pl-5 pt-24 border">โต๊ะ : {{selectedItem.table_id }}</p>
+          <div class="mt-2 p-5">
+            <p class="font-semibold mr-2">เมนู:</p>
+            <ul>
+              <ng-container *ngFor="let menu of selectedItem.menu_names.split(','); let j = index">
+                <li>{{ j + 1 }}. {{ menu }} (จำนวน: {{ selectedItem.quantities.split(',')[j] }})</li>
+              </ng-container>
+            </ul>
+          </div>
+          <div class="p-5">
             <p class="font-semibold mr-2">ราคารวม :</p>
-            <p>{{ selectedItem.total_price }}</p>
-        </div>
-        <div class="p-5">
+            <p>{{ selectedItem.total_price }} บาท</p>
+          </div>
+          <div class="p-5">
             <p class="font-semibold mr-2">วันที่ :</p>
             <p>{{ selectedItem.order_date[2] }}/{{ selectedItem.order_date[1] }}/{{ selectedItem.order_date[0] }} เวลา: {{ selectedItem.order_date[3] }}:{{ selectedItem.order_date[4] }}:{{ selectedItem.order_date[5] }}</p>
+          </div>
         </div>
       </div>
-    </div>
+      
 </div>

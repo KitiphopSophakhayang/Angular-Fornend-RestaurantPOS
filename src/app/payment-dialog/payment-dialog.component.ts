@@ -27,28 +27,6 @@ export class PaymentDialogComponent {
     
   }
 
-  // onConfirm(): void {
-  //   // สร้าง payload สำหรับอัปเดตสถานะเป็น "complete"
-  //   window.location.reload();
-  //   const payload = {
-  //     orderItemIds: this.orderService.orderItemIds,
-  //     status: 'complete'
-  //   } ;
-    
-  
-  //   // เรียกใช้งานเมธอดใน OrderService เพื่อทำการอัปเดตสถานะ
-  //   this.orderService.updateOrderPaymentStatus(payload).subscribe((res: any) => {
-  //     this.orderService.orderItemIds = []
-  //     Swal.fire({
-  //       position: 'center',
-  //       icon: 'success',
-  //       title: 'การยืนยันการชำระเงินสำเร็จแล้ว',
-  //       showConfirmButton: false,
-  //       timer: 1500
-  //     });
-  //   });
-  // }
-  
   onConfirm(): void {
     // แปลง order_item_id จากสตริงเป็นอาร์เรย์ของ ID
     const orderItemIds = this.data.selectedOrders.flatMap((order: any) => order.order_item_id.split(','));
@@ -74,7 +52,6 @@ export class PaymentDialogComponent {
       });
     });
   }
-  
   
 
   onCancel(): void {
