@@ -249,7 +249,9 @@ export class OrderHistoryComponent implements OnInit {
 
   // เพิ่ม method toggleSelection เพื่อเปลี่ยนสถานะของ checkbox
   toggleSelection(index: number, item: any) {
-    this.orderService.orderItemIds.push(item.order_item_id)
+    this.orderService.orderItemIds.push(item.order_item_id)    
+    console.log(this.orderService.orderItemIds);
+    
     this.selectedItems[index] = !this.selectedItems[index];
   }
 

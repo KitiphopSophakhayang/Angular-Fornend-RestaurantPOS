@@ -18,7 +18,7 @@
         <tr *ngFor="let order of data.selectedOrders; let i = index" class="text-left">
           <td>{{ i + 1 }}. {{ order.name }}</td>
           <td>{{ order.quantity }}</td>
-          <td>{{ order.price }}</td>
+          <td>{{ order.price * order.quantity }}</td> <!-- คำนวณราคารวมเป็นผลคูณระหว่างราคาต่อหน่วยกับจำนวน -->
         </tr>
         <tr class="border-t-4">
           <td class="font-semibold">รวม</td>

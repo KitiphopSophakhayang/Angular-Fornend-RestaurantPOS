@@ -12,35 +12,7 @@
         <div class="pl-4 ">
             <p class="text-stone-600 responsive-text ">หมวดหมู่</p>
         </div>
-        <!-- <div class="grid grid-cols-4 gap-3 mx-3 mt-2 responsive-text">
-              <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl">
-                <div class="flex flex-col items-center">
-                  <img src="assets/image/rice.png">
-                  <p class="mx-auto">ตามสั่ง</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl">
-                <div class="flex flex-col items-center">
-                  <img src="assets/image/noodles.png">
-                  <p class="mx-auto">ก๋วยเตี๋ยว</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl">
-                <div class="flex flex-col items-center">
-                  <img src="assets/image/snacks.png">
-                  <p class="mx-auto">ของว่าง</p>
-                </div>
-              </div>
-              <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl">
-                <div class="flex flex-col items-center">
-                  <img src="assets/image/drink.png">
-                  <p class="mx-auto">เครื่องดื่ม</p>
-                </div>
-              </div>
-        </div> -->
 
-     
-        
 
      <div class="grid grid-cols-5 gap-3 mx-3 mt-2 responsive-text">
       <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl" (click)="showAllOrders()">
@@ -57,66 +29,12 @@
           </div>
         </div>
       </div>
-        
-
-      
-
-        <!-- <div class="flex flex-wrap gap-3 mx-3 mt-2 responsive-text overflow-x-scroll">
-          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl w-1/4">
-              <div class="flex flex-col items-center">
-                  <img src="assets/image/rice.png">
-                  <p class="mx-auto">ตามสั่ง</p>
-              </div>
-          </div>
-          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl w-1/4">
-              <div class="flex flex-col items-center">
-                  <img src="assets/image/noodles.png">
-                  <p class="mx-auto">ก๋วยเตี๋ยว</p>
-              </div>
-          </div>
-          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl w-1/4">
-              <div class="flex flex-col items-center">
-                  <img src="assets/image/snacks.png">
-                  <p class="mx-auto">ของว่าง</p>
-              </div>
-          </div>
-          <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl w-1/4">
-              <div class="flex flex-col items-center">
-                  <img src="assets/image/drink.png">
-                  <p class="mx-auto">เครื่องดื่ม</p>
-              </div>
-          </div>
-      </div> -->
-      
-      
-      
+            
 
         <div class="pl-4 mt-3 ">
             <p class="text-stone-600 responsive-text ">รายการอาหารทั้งหมด</p>
         </div>
 
-
-          <!-- ส่วนที่ใช้แสดงรายการอาหารตามหมวดหมู่ที่เลือก -->
-      <!-- <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
-        <div class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" *ngFor="let order of filteredOrders| filter:searchText" (click)="addSelectedOrder(order)">
-          <div>
-            <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-            <p class="mx-2">{{ order.name }}</p>
-            <p class="font-bold mx-2">{{ order.price }} ฿</p>
-          </div>
-        </div>
-      </div> -->
-      <!-- <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
-        <ng-container *ngFor="let order of filteredOrders || files| filter:searchText">
-          <div class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" (click)="addSelectedOrder(order)">
-            <div>
-              <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-              <p class="mx-2">{{ order.name }}</p>
-              <p class="font-bold mx-2">{{ order.price }} ฿</p>
-            </div>
-          </div>
-        </ng-container>
-      </div> -->
       
       <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
         <ng-container *ngIf="!foodTypeSelected; else filteredOrdersSection">
@@ -142,27 +60,7 @@
         </ng-template>
       </div>
       
-      
 
-       <!-- <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
-        <div class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" *ngFor="let order of files| filter:searchText" (click)="addSelectedOrder(order)">
-          <div>
-            <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-            <p class="mx-2">{{ order.name }}</p>
-            <p class="font-bold mx-2">{{ order.price }} ฿</p>
-          </div>
-        </div>
-      </div> -->
-          
-      <!-- <div class="grid grid-cols-3 gap-3 mx-3 mt-2 responsive-text">
-        <div class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" *ngFor="let order of orders | filter:searchText" (click)="addSelectedOrder(order)">
-          <div>
-            <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-            <p class="mx-2">{{ order.name }}</p>
-            <p class="font-bold mx-2">{{ order.price}} ฿</p>
-          </div>
-        </div>
-    </div>  -->
 
     </div>
 

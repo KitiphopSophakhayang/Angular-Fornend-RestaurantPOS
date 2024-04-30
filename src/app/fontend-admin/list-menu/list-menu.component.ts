@@ -50,15 +50,6 @@ export class ListMenuComponent implements OnInit {
     });
   }
 
-  // loadAllFoodType(): void {
-  //   this.orderService.getAllOrderItems().subscribe(res => this.filteredOrders = res)
-  // }
-
-  // selectCategory(foodType: any): void {
-  //   const id = foodType.id;
-  //   this. getFilesByFoodType(id);
-    
-  // }
 
   selectCategory(foodType: any): void {
     const id = foodType.id;
@@ -77,23 +68,6 @@ export class ListMenuComponent implements OnInit {
     this.filteredOrders = this.files;
   }
   
-
-  // getFiles(id: number): void {
-  //   this.filteredOrders = []; // เคลียร์รายการอาหารที่มีอยู่แล้วทุกครั้งที่ดึงข้อมูลใหม่
-  //   this.orderService.getFoodTypeById(id).subscribe(
-  //     (response: any[]) => {
-  //       response.forEach((element) => {
-  //         element.test = 'data:image/jpeg;base64,' + element.data;
-  //         this.filteredOrders.push(element);
-  //       });
-  //       console.log(this.filteredOrders);
-  //     },
-  //     (error: any) => {
-  //       console.error('Error fetching files:', error);
-  //     }
-  //   );
-  // }
-
 
   getFiles(): void {
     this.orderService.getAllOrders().subscribe(
@@ -123,51 +97,6 @@ export class ListMenuComponent implements OnInit {
       }
     );
   }
-
-  // selectCategory(foodType: any): void {
-  //   this.selectedFoodType = foodType.food_type_id; // สร้าง selectedFoodType จาก food_type_id
-  //   this.filterOrders(); // เรียกใช้งานฟังก์ชัน filterOrders เพื่อกรองรายการอาหาร
-  // }
-
-  // filterOrders(): void {
-  //   if (this.selectedFoodType) {
-  //     this.filteredOrders = this.orders.filter((order: any) => order.food_type_id === this.selectedFoodType);
-  //   } else {
-  //     this.filteredOrders = this.orders; // ถ้าไม่มีประเภทอาหารที่เลือกให้แสดงทั้งหมด
-  //   }
-  // }
-
-  // getFiles(): void {
-  //   this.orderService.getAllOrders().subscribe(
-  //     (response: any[]) => {
-  //       response.forEach(element => {
-  //         if (!this.selectedFoodType || this.selectedFoodType.length === 0 || this.selectedFoodType.includes(element.category)) {
-  //           element.test = 'data:image/jpeg;base64,' + element.data;
-  //           this.filteredOrders.push(element); // เก็บข้อมูลที่ผ่านการกรองเท่านั้น
-  //         }
-  //       });
-  //       console.log(this.filteredOrders);
-  //     },
-  //     (error: any) => {
-  //       console.error('Error fetching files:', error);
-  //     }
-  //   );
-  // }
-
-  // getFiles(): void {
-  //   this.orderService.getAllOrders().subscribe(
-  //     (response: any[]) => {
-  //       response.forEach(element => {
-  //         element.test = 'data:image/jpeg;base64,' + element.data;
-  //         this.orders.push(element);
-  //       });
-  //       console.log(this.orders);
-  //     },
-  //     (error: any) => {
-  //       console.error('Error fetching files:', error);
-  //     }
-  //   );
-  // }
 
   // เพิ่มสินค้าลงในตะกร้า
   add_cart(order: any): void {
@@ -208,18 +137,33 @@ export class ListMenuComponent implements OnInit {
     }
   }
 
-  // เพิ่มสินค้าลงในตะกร้า
+  // // เพิ่มสินค้าลงในตะกร้า
+  // addSelectedOrder(order: Order): void {
+  //   let index = this.selectedOrders.findIndex((item: any) => item === order);
+  //   this.addOrders = true;
+  //   if (index === -1) {
+  //     // เพิ่มสินค้าลงในตะกร้าอาหาร
+  //     this.selectedOrders.push({ ...order, quantity: 1 });
+  //   } else {
+  //     // เพิ่มจำนวนสินค้าในตะกร้าอาหาร
+  //     this.selectedOrders[index].quantity++;
+  //   }
+  // }
+
   addSelectedOrder(order: Order): void {
-    let index = this.selectedOrders.findIndex((item: any) => item === order);
-    this.addOrders = true;
+    // ตรวจสอบว่าเมนูที่เลือกอยู่ในตะกร้าแล้วหรือไม่
+    const index = this.selectedOrders.findIndex((item: any) => item.id === order.id);
+    this.addOrders = true; // เปิดให้แสดงส่วนของตะกร้าออเดอร์
+  
     if (index === -1) {
-      // เพิ่มสินค้าลงในตะกร้าอาหาร
+      // ถ้าไม่เจอเมนูที่เลือกในตะกร้า ให้เพิ่มเมนูนี้เข้าไป
       this.selectedOrders.push({ ...order, quantity: 1 });
     } else {
-      // เพิ่มจำนวนสินค้าในตะกร้าอาหาร
+      // ถ้าเจอเมนูที่เลือกอยู่ในตะกร้า ให้เพิ่มจำนวนสินค้าเข้าไปเพิ่มเติม
       this.selectedOrders[index].quantity++;
     }
   }
+  
 
   // ลบสินค้าออกจากตะกร้า
   removeSelectedOrder(index: number): void {
@@ -231,41 +175,6 @@ export class ListMenuComponent implements OnInit {
     // ลบรายการทั้งหมดที่เพิ่มเข้ามาทั้งหมดออกจากตะกร้าออเดอร์
     this.selectedOrders = [];
   }
-
-  // confirmOrder(selectedTable: any): void {
-  //   // คำนวณราคารวมของรายการอาหารที่เลือก
-  //   const totalPrice = this.getTotalPrice();
-
-  //   // เพิ่มสถานะ "pending" และ "totalPrice" ในรายการอาหารที่เลือก
-  //   this.selectedOrders.forEach((order: any) => {
-  //     order.status = 'pending';
-  //     order.totalPrice = totalPrice;
-  //     order.order = { id: order.id }; // เพิ่ม id ของรายการอาหารลงใน order
-  //   });
-
-  //   // เพิ่มข้อมูลเกี่ยวกับโต๊ะที่ผู้ใช้เลือกเข้าไปในรายการอาหารที่เลือก (หากมีการเลือกโต๊ะ)
-  //   if (selectedTable) {
-  //     this.selectedOrders.forEach((order: any) => {
-  //       order.table = selectedTable;
-  //     });
-  //   }
-
-  //   // ส่งรายการอาหารที่เลือกไปยัง API เพื่อบันทึกลงในฐานข้อมูล
-  //   this.orderService.addOrderItems(this.selectedOrders).subscribe(
-  //     (response) => {
-  //       // หากการสั่งซื้อสำเร็จ
-  //       console.log('Order placed successfully:', response);
-  //       // ล้างรายการอาหารที่เลือกไว้ในตะกร้า
-  //       this.selectedOrders = [];
-  //       // แสดงข้อความหรือทำการ redirect หรือดำเนินการต่อตามที่คุณต้องการ
-  //     },
-  //     (error) => {
-  //       // หากเกิดข้อผิดพลาดในการสั่งซื้อ
-  //       console.error('Error placing order:', error);
-  //       // ดำเนินการจัดการข้อผิดพลาดตามที่คุณต้องการ เช่น แสดงข้อความผิดพลาด ลองสั่งซื้ออีกครั้ง ฯลฯ
-  //     }
-  //   );
-  // }
 
   confirmOrder(selectedTable: any): void {
     // คำนวณราคารวมของรายการอาหารที่เลือก

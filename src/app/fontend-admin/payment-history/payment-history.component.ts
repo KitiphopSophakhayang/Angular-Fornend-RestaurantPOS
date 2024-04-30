@@ -1,5 +1,5 @@
 // import { Component, OnInit } from '@angular/core';
-// import { OrderService } from 'src/app/services/data.service'; 
+// import { OrderService } from 'src/app/services/data.service';
 // import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 // @Component({
@@ -34,7 +34,7 @@
 //         this.ordersFromGroupedData = data;
 //       });
 //   }
-  
+
 //   onOpen(item: any) {
 //     this.selectedItem = item;
 //     this.orderDisplayStatus = true;
@@ -42,13 +42,13 @@
 // }
 
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from 'src/app/services/data.service'; 
+import { OrderService } from 'src/app/services/data.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-payment-history',
   templateUrl: './payment-history.component.html',
-  styleUrls: ['./payment-history.component.css']
+  styleUrls: ['./payment-history.component.css'],
 })
 export class PaymentHistoryComponent implements OnInit {
   ordersFromGroupedData: any[] = [];
@@ -56,31 +56,36 @@ export class PaymentHistoryComponent implements OnInit {
   orderDisplayStatus: boolean = false;
   orderForm!: FormGroup;
   selectedItem: any = null;
+  test = []
 
-  constructor(private orderService: OrderService, private fb: FormBuilder) {
-    this.onInitForm();
-  }
+  constructor(private orderService: OrderService, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getCompleteGroupedOrderItems(); // เรียกใช้เมธอดเพื่อดึงข้อมูล
+    
   }
 
-  onInitForm(): void {
-    this.orderForm = this.fb.group({
-      // กำหนดค่าเริ่มต้นของฟอร์มตามต้องการ
-    });
-  }
 
-  getCompleteGroupedOrderItems(): void { // เปลี่ยนชื่อเมธอด
-    this.orderService.getCompleteGroupedOrderItems() // เรียกใช้ getCompleteGroupedOrderItems จาก OrderService
+  getCompleteGroupedOrderItems(): void {
+    // เปลี่ยนชื่อเมธอด
+    this.orderService
+      .getCompleteGroupedOrderItems() // เรียกใช้ getCompleteGroupedOrderItems จาก OrderService
       .subscribe((data: any[]) => {
+        let obj = {}
+
+        data.forEach((order, index) => {
+          const tableId = order.table_id
+          console.log(tableId);
+          
+        });
+
         this.ordersFromGroupedData = data;
+        console.log(this.ordersFromGroupedData);
       });
   }
-  
+
   onOpen(item: any) {
     this.selectedItem = item;
     this.orderDisplayStatus = true;
   }
 }
-
