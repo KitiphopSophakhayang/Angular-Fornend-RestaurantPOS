@@ -5,11 +5,11 @@
       <p>โต๊ะ: {{ order.table_id }}</p>
       <p>วันที่: {{ order.order_date[2] }}/{{ order.order_date[1] }}/{{ order.order_date[0] }} เวลา: {{ order.order_date[3] }}:{{ order.order_date[4] }}:{{ order.order_date[5] }}</p>
       <p>เมนู: {{ order.menu_names }}</p>
-      <p>ราคารวม: {{ order.total_price }}</p>
+      <p class="font-semibold ">ราคารวม: {{ order.total_price }} บาท</p>
       <!-- เพิ่มข้อมูลเพิ่มเติมตามต้องการ -->
     </li>
   </ul>
-  <p class="font-bold">ราคารวมทั้งหมด: {{ totalPrice }}</p>
+  <p class="font-black border-b-4 border-t-4">ราคารวมทั้งหมด: {{ totalPrice }} บาท</p>
 </div>
 <div mat-dialog-actions>
   <!-- <button mat-button [mat-dialog-close]="true">ยืนยัน</button>
