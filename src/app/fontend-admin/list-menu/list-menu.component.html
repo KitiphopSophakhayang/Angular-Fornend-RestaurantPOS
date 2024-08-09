@@ -41,9 +41,9 @@
           <!-- แสดงรายการอาหารทั้งหมด -->
           <div *ngFor="let order of files | filter: searchText" class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" (click)="addSelectedOrder(order)">
             <div>
-              <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-              <p class="mx-2">{{ order.name }}</p>
-              <p class="font-bold mx-2">{{ order.price }} ฿</p>
+              <img [src]="order.test" alt="Food Image" class="w-full h-48 object-cover object-center rounded-lg">
+              <p class="pl-2">{{ order.name }}</p>
+              <p class="font-bold pl-2">{{ order.price }} ฿</p>
             </div>
           </div>
         </ng-container>
@@ -53,8 +53,8 @@
           <div *ngFor="let order of filteredOrders | filter: searchText" class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" (click)="addSelectedOrder(order)">
             <div>
               <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-              <p class="mx-2">{{ order.name }}</p>
-              <p class="font-bold mx-2">{{ order.price }} ฿</p>
+              <p class="pl-2">{{ order.name }}</p>
+              <p class="font-bold pl-2">{{ order.price }} ฿</p>
             </div>
           </div>
         </ng-template>

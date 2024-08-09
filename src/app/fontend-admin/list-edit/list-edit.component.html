@@ -34,9 +34,9 @@
 
         <div class="hover:border-2 border-orange-500 flex items-center justify-center bg-white shadow-md rounded-xl" *ngFor="let file of files" (click)="onSelectOrder(file)">
           <div >
-              <img [src]="file.test"  alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
-              <p class="mx-2">{{ file.name }}</p>
-              <p class="font-bold mx-2">{{ file.price }} ฿</p>
+              <img [src]="file.test"  alt="Food Image" class="w-full h-48 object-cover object-center rounded-lg">
+              <p class="pl-2">{{ file.name }}</p>
+              <p class="font-bold pl-2">{{ file.price }} ฿</p>
           </div>
         </div>
         
@@ -87,14 +87,14 @@
           <div class="px-12">
             <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
                 <button (click)="updateOrder()" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
-                <div class="flex items-center justify-center">
-                  <p class="responsive-text">เสร็จสิ้น</p>
+                <div class="flex items-center justify-center responsive-text">
+                    เสร็จสิ้น
                 </div>
               </button>
         
               <button (click)="deleteOrder()" class="hover:border-2 w-full hover:bg-red-500 bg-[rgba(255,0,0,1)] rounded-3xl text-lg text-white sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24">
-                <div class="flex items-center justify-center">
-                  <p class="responsive-text">ลบ</p>
+                <div class="flex items-center justify-center responsive-text">
+                    ลบ
                 </div>
              </button>
             </div>
@@ -178,8 +178,8 @@
         <div class="px-12">
           <div class="flex items-center justify-center gap-5 sm:md:p-2 lg:pb-20 xl:pt-5 2xl:">
             <button type="button" class="hover:border-2 w-full hover:bg-yellow-500 bg-[rgba(250,175,21,1)] rounded-3xl text-lg text-white  sm:h-12 md:h-14 lg:h-16 xl:h-20 2xl:h-24" (click)="createOrder()" [disabled]="!selectedFile">
-              <div class="flex items-center justify-center">
-                <p class="responsive-text">เสร็จสิ้น</p>
+              <div class="flex items-center justify-center responsive-text">
+                เสร็จสิ้น
               </div>
             </button>
           </div>
