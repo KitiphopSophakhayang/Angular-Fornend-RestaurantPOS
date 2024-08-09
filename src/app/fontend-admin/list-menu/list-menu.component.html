@@ -14,15 +14,15 @@
         </div>
 
 
-     <div class="grid grid-cols-5 gap-3 mx-3 mt-2 responsive-text">
-      <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl" (click)="showAllOrders()">
-        <div class="flex flex-col items-center">
+     <div class="grid grid-cols-5 gap-3 mx-3 mt-2 responsive-text ">
+      <div class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl  border-2 border-yellow-600" (click)="showAllOrders()">
+        <div class="flex flex-col items-center ">
           <img src="assets/image/menu_all.png" class="w-20">
           <p class="mx-auto">ทั้งหมด</p>
         </div>
       </div> 
       
-      <div *ngFor="let foodType of foodTypes" class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl" (click)="selectCategory(foodType)">
+      <div *ngFor="let foodType of foodTypes" class="flex items-center justify-center bg-[rgba(217,217,217,255)] hover:bg-yellow-400 p-5 rounded-3xl  border-2 border-yellow-600" (click)="selectCategory(foodType)">
           <div class="flex flex-col items-center">
             <img src="assets/image/noodles.png">
             <p class="mx-auto">{{ foodType.name }}</p>
@@ -41,7 +41,7 @@
           <!-- แสดงรายการอาหารทั้งหมด -->
           <div *ngFor="let order of files | filter: searchText" class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" (click)="addSelectedOrder(order)">
             <div>
-              <img [src]="order.test" alt="Food Image" class="w-full h-48 object-cover object-center rounded-lg">
+              <img [src]="order.test" alt="Food Image" class="w-screen  h-48 object-cover object-center rounded-lg">
               <p class="pl-2">{{ order.name }}</p>
               <p class="font-bold pl-2">{{ order.price }} ฿</p>
             </div>
@@ -52,7 +52,7 @@
           <!-- แสดงรายการอาหารตามหมวดหมู่ที่เลือก -->
           <div *ngFor="let order of filteredOrders | filter: searchText" class="flex items-center justify-center bg-white shadow-md rounded-xl hover:border-2 border-orange-500" (click)="addSelectedOrder(order)">
             <div>
-              <img [src]="order.test" alt="Food Image" class="w-full h-44 object-cover object-center rounded-lg">
+              <img [src]="order.test" alt="Food Image" class="w-screen  h-44 object-cover object-center rounded-lg">
               <p class="pl-2">{{ order.name }}</p>
               <p class="font-bold pl-2">{{ order.price }} ฿</p>
             </div>
